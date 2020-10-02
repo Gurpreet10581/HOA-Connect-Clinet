@@ -1,26 +1,54 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Auth from "./components/Auth/Auth"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+type sessionData ={
+  sessionToken: string | null;
+  role: string
+}
+class App extends React.Component<{},sessionData>{
+  constructor(props: {}){
+    super(props);
+    this.state= {
+      sessionToken: "",
+      role: "User"
+
+    }
+  }
+
+  componentDidMount(){
+    if(localStorage.getItem('token')){
+      this.setState({
+        sessionToken: localStorage.getItem('token')
+      })
+    }
+  }
+
+  updateToken =(newToken: string) => {
+    localStorage.setItem('token',newToken);
+    this.setState({
+      sessionToken: newToken
+    })
+  }
+
+  clearToken = () => {
+    localStorage.clear();
+    this.setState({
+      sessionToken: ''
+    })
+  }
+  render(){
+
+    return (
+      <div className="App">
+      <div className="mainApp">
+      <Auth updateToken={this.updateToken}
+      />
+      </div>
+      </div>
+      );
+  }
 }
 
 export default App;
