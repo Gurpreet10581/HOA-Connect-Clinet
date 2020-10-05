@@ -1,19 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Auth from "./components/Auth/Auth"
+import {User} from './components/Helpers/Interfaces';
+import Admin from './components/Auth/Admin';
 
+
+type Props= {
+  updateToken: (token: string) => void;
+  setAdmin: (user: User) => void;
+}
 type sessionData ={
   sessionToken: string | null;
-  role: string
+  admin: boolean;
 }
+
+
 class App extends React.Component<{},sessionData>{
   constructor(props: {}){
     super(props);
     this.state= {
-      sessionToken: "",
-      role: "User"
-
+      sessionToken: localStorage.getItem('token')? localStorage.getItem('token'):  "",
+      admin: false,
     }
   }
 
@@ -24,14 +31,18 @@ class App extends React.Component<{},sessionData>{
       })
     }
   }
-
   updateToken =(newToken: string) => {
     localStorage.setItem('token',newToken);
     this.setState({
       sessionToken: newToken
+      
     })
   }
-
+  setAdmin =(user: User) =>{
+    this.setState({
+      admin: user.admin
+    })
+  }
   clearToken = () => {
     localStorage.clear();
     this.setState({
@@ -39,12 +50,11 @@ class App extends React.Component<{},sessionData>{
     })
   }
   render(){
-
     return (
       <div className="App">
       <div className="mainApp">
-      <Auth updateToken={this.updateToken}
-      />
+        {this.state.admin? <Admin updateToken={this.updateToken} admin={this.state.admin}/> :
+      <Auth updateToken={this.updateToken} admin={this.setAdmin} />}
       </div>
       </div>
       );

@@ -75,7 +75,6 @@ class CreateProfile extends Component <AcceptedProps, profileState>{
                   this.setState({ ...this.state, about: e.target.value })
                 }
               />
-    
               <Button
                 size="small"
                 variant="outlined"

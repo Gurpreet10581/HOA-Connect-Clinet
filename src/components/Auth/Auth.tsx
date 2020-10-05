@@ -1,20 +1,21 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch,BrowserRouter as Router } from "react-router-dom";
 import Signup from "./Signup";
 import Signin from "./Signin";
 
 type Props = {
     updateToken: any,
-    token: any,
-    updateLog: any
+    admin: any;
 }
 const Auth: React.FC<Props> = (props: Props) => {
     return (
-        <Switch>
-            <Route exact path="/"><Signup updateToken={props.updateToken} updateLog={props.updateLog} /></Route>
-            <Route exact path="/signup"><Signup updateToken={props.updateToken} updateLog={props.updateLog} /></Route>
-            <Route exact path="/signin"><Signin updateToken={props.updateToken} updateLog={props.updateLog} /></Route>
-        </Switch>
+        <Router>
+            <Switch>
+                <Route exact path="/"><Signup updateToken={props.updateToken}  /></Route>
+                <Route exact path="/signup"><Signup updateToken={props.updateToken} /></Route>
+                <Route exact path="/signin"><Signin admin={props.admin} updateToken={props.updateToken}  /></Route>
+            </Switch>
+        </Router>
     )
 }
 export default Auth;

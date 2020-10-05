@@ -27,7 +27,7 @@ class CreateResponse extends Component <AcceptedProps, responseState>{
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const url = `${APIURL}/response/newResponse`;
+        const url = `${APIURL}/response/newResponse/:id`;
     
         const postSend = {
           responseState: {

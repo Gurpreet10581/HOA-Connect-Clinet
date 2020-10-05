@@ -13,97 +13,65 @@ import Typography from '@material-ui/core/Typography';
 
 type acceptedProps = {
     updateToken: any,
-    updateLog: any
+    // updateLog: any
+  //add the conditonal admin function here 
+
   }
 
-type state ={
+type State ={
+    user: any,
     firstName: string;
-    Alert1: string;
     lastName: string;
-    Alert2: string;
     email: string;
-    Alert3: string;
     password: string;
-    Alert4: string;
     admin: boolean;
+    userName: string;
 }
 
-export default class Signup extends Component <acceptedProps, state>{
+export default class Signup extends Component <acceptedProps, State>{
     constructor (props: acceptedProps){
         super(props)
-        this.state= {
+       this.state= {
+            user: {},
             firstName: '',
-            Alert1: '',
             lastName: '',
-            Alert2: '',
             email: '',
-            Alert3: '',
             password: '',
-            Alert4: '',
             admin: false,
+            userName: 'Enter an User Name'
         }
     }
 
     handleSubmit = (e: any) => {
         e.preventDefault();
-        if (!this.state.firstName) {
-          this.setState({ Alert1: "Enter First Name" });
-        }
-        else {
-          this.setState({ Alert1: "" });
-          if (!this.state.lastName) {
-            this.setState({ Alert2: "Enter Last Name" });
+       
+      fetch(`${APIURL}/user/signup`, {
+        method: "POST",
+        body: JSON.stringify({
+        user:{
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          email: this.state.email,
+          password: this.state.password,
+          userName: this.state.userName,
+          admin:this.state.admin
           }
-          else {
-            this.setState({ Alert2: "" })
-            if (!this.state.email) {
-              this.setState({ Alert3: "Enter Email" });
-            }
-            else {
-              this.setState({ Alert1: "" });
-              if (!this.state.lastName) {
-                this.setState({ Alert2: "Enter Last Name" });
-              }
-              else {
-                this.setState({ Alert2: "" })
-                if (!this.state.email) {
-                  this.setState({ Alert3: "Enter Email!" });
-                }
-                else {
-                  this.setState({ Alert3: "" });
-                  if (!this.state.password) {
-                    this.setState({ Alert4: "Enter Password!" });
-                  }
-                  else {
-                    this.setState({ Alert4: "" });
-                    fetch(`${APIURL}/user/signup`, {
-                      method: "POST",
-                      body: JSON.stringify({
-                        firstName: this.state.firstName,
-                        lastName: this.state.lastName,
-                        email: this.state.email,
-                        password: this.state.password
-                      }),
-                      headers: new Headers({
-                        "Content-Type": "application/json"
-                      })
-                    })
-                      .then(data => data.json())
-                      .then(json => {
-                        this.props.updateToken(json.sessionToken, this.state.admin, json.data.firstName,json.data.id);
-                        this.props.updateLog("LogOut");
-                      })
-                  }
-                }
-              }
-            }
-          }
-        }
-    }
-    componentDidMount = () => {
-        this.props.updateLog("LogIn");
-    }
+        }),
+        headers: new Headers({
+        "Content-Type": "application/json"
+        })
+      })
+      .then(data => data.json())
+      .then(json => {
+      console.log(json);
+      this.props.updateToken(json.sessionToken, this.state.admin); 
+      // this.props.updateLog("LogOut");
+      })
+      .catch(err => console.log(err))
 
+    }
+             
+   
     render() {
         return (
           <Grid container component="main" className='root'>
@@ -134,7 +102,6 @@ export default class Signup extends Component <acceptedProps, state>{
                       this.setState({ firstName: e.target.value })
                     }}
                   />
-                  {this.state.Alert1}<br />
                   <TextField
                     variant="outlined"
                     margin="normal"
@@ -148,7 +115,19 @@ export default class Signup extends Component <acceptedProps, state>{
                     value={this.state.lastName}
                     onChange={e => this.setState({ lastName: e.target.value })}
                   />
-                  {this.state.Alert2}<br />
+                    <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="userName"
+                    label="User Name"
+                    name="userName"
+                    autoComplete="User Name"
+                    autoFocus
+                    value={this.state.userName}
+                    onChange={e => this.setState({ userName: e.target.value })}
+                  />
                   <TextField
                     variant="outlined"
                     margin="normal"
@@ -162,7 +141,6 @@ export default class Signup extends Component <acceptedProps, state>{
                     value={this.state.email}
                     onChange={e => this.setState({ email: e.target.value })}
                   />
-                  {this.state.Alert3}<br />
                   <TextField
                     variant="outlined"
                     margin="normal"
@@ -182,7 +160,6 @@ export default class Signup extends Component <acceptedProps, state>{
                     value={this.state.password}
                     onChange={e => this.setState({ password: e.target.value })}
                   />
-                  {this.state.Alert4}<br />
                   <Button
                     type="submit"
                     fullWidth

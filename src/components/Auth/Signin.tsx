@@ -12,63 +12,39 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import './Auth.css';
 
-
 type acceptedProps ={
     updateToken: any ;
-    updateLog: any;
-   
+    admin:boolean;
 }
 
-type state ={
+type State ={
     email: string;
     setEmail: string;
     password: string;
     setPassword:string;
-    
 }
 
-export default class Signin extends Component <acceptedProps, state>{
+export default class Signin extends Component <acceptedProps, State>{
     constructor(props: acceptedProps){
         super(props);
         this.state ={
             email: "",
             setEmail: "",
             password: "",
-            setPassword: ""
+            setPassword: "",
         }
     }
 
-
     handleSubmit = (event: any) => {
         event.preventDefault();
-        if(!this.state.email){
-            this.setState({
-
-                setEmail: "Email Required"
-            })
-        }
-        else{
-            this.setState({
-                setEmail: ""
-            })
-        }
-        if(!this.state.password){
-            this.setState({
-                setPassword: "Password Required"
-            })
-        }
-        else{
-            this.setState({
-                setPassword:""
-            })
-        }
-        
-
         fetch(`${APIURL}/user/signin`,{
             method: "POST",
             body: JSON.stringify({
-                email: this.state.email,
-                password: this.state.password,
+                user:{
+
+                    email: this.state.email,
+                    password: this.state.password,
+                }
             }),
             headers: new Headers({
                 "Content-Type": "application/json",
@@ -77,16 +53,12 @@ export default class Signin extends Component <acceptedProps, state>{
         .then((response) => response.json())
         .then((data) => {
             this.props.updateToken(data.sessionToken,data.user.userRole,data.user.firstName,data.user.id);
-            data.sessionToken?this.props.updateLog("SignOut"):this.props.updateLog("SignIn");
+            console.log(`You are now Signed In!`);
            
-        });
+        })
+        .catch(err => err.status(500).json({error: err}))
+
     };
-
-    componentDidMount=()=>{
-        
-        this.props.updateLog("SignUp");
-    }
-
     render(){
         return(
                 <Grid container component="main" className='root'>
