@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import APIURL from '../Helpers/environment';
-import './Auth.css';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -51,8 +50,8 @@ export default class Signin extends Component <acceptedProps, State>{
             }), 
         })
         .then((response) => response.json())
-        .then((data) => {
-            this.props.updateToken(data.sessionToken,data.user.userRole,data.user.firstName,data.user.id);
+        .then((data) => { console.log(data);
+            this.props.updateToken(data.sessionToken);//to pass string not object
             console.log(`You are now Signed In!`);
            
         })
@@ -113,6 +112,7 @@ export default class Signin extends Component <acceptedProps, State>{
                         variant="contained"
                         color="primary"
                         className='submit'
+                        onClick={event => { this.handleSubmit(event) }}
                     >
                         SignIn
                     </Button>

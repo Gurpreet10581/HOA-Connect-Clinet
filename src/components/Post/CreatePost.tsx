@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import APIURL from '../Helpers/environment';
 
 type AcceptedProps = {
-    token:string;
+    updateToken:string;
     setPost: any;
 }
 
@@ -29,7 +29,7 @@ class CreatePost extends Component <AcceptedProps, postState>{
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const url = `${APIURL}/post/newPost`;
+        const url = `${APIURL}/post/newPost/:id`;
     
         const postSend = {
           postState: {
@@ -45,7 +45,7 @@ class CreatePost extends Component <AcceptedProps, postState>{
           body: JSON.stringify(postSend),
           headers: {
             "Content-Type": "application/json",
-            Authorization: this.props.token,
+            Authorization: this.props.updateToken,
           },
         })
           .then((res) => res.json())

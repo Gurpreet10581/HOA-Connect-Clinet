@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import Auth from "./components/Auth/Auth"
 import {User} from './components/Helpers/Interfaces';
-import Admin from './components/Auth/Admin';
+import {Admin} from './components/Auth/Admin';
+import {HomePage} from './components/HomePage/HomePage'
 
 
 type Props= {
@@ -53,8 +54,10 @@ class App extends React.Component<{},sessionData>{
     return (
       <div className="App">
       <div className="mainApp">
-        {this.state.admin? <Admin updateToken={this.updateToken} admin={this.state.admin}/> :
-      <Auth updateToken={this.updateToken} admin={this.setAdmin} />}
+        {localStorage.getItem("token") === null ?
+      <Auth updateToken={this.updateToken} admin={this.setAdmin} />:
+      <HomePage clearToken={this.clearToken} updateToken= {this.state.sessionToken}  />
+      }
       </div>
       </div>
       );

@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import APIURL from '../Helpers/environment';
 
 type AcceptedProps = {
-    token:string;
+    updateToken:string;
     setProfile: any;
 }
 
@@ -42,7 +42,7 @@ class CreateProfile extends Component <AcceptedProps, profileState>{
           body: JSON.stringify(profileSend),
           headers: {
             "Content-Type": "application/json",
-            Authorization: this.props.token,
+            Authorization: this.props.updateToken,
           },
         })
           .then((res) => res.json())

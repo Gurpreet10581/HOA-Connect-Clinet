@@ -1,10 +1,10 @@
 /* .root {
-    height: 100vh !important;
+    height: 10vh !important;
     
 }
 
 .image {
-    background-image: url(https://wallpapertag.com/wallpaper/full/6/0/d/605188-cool-movie-posters-wallpapers-1920x1080.jpg) !important;
+    background-image: url("../../assets/download.png") !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-position: center !important;

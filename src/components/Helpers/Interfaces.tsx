@@ -11,4 +11,23 @@ export interface User{
     password: string,
     admin: boolean
     
-  }
+}
+
+export interface Profile{
+    userId: number,
+    address: string,
+    about: string
+}
+
+export interface Post{
+    userId: number,
+    title: string,
+    description:string,
+    profileId: number
+}
+export interface Response{
+    userId: number,
+    description:string,
+    postId: number
+}
+

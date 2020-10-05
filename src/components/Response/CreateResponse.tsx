@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import APIURL from '../Helpers/environment';
 
 type AcceptedProps = {
-    token:string;
+    updateToken:string;
     setResponse: any;
 }
 
@@ -42,7 +42,7 @@ class CreateResponse extends Component <AcceptedProps, responseState>{
           body: JSON.stringify(postSend),
           headers: {
             "Content-Type": "application/json",
-            Authorization: this.props.token,
+            Authorization: this.props.updateToken,
           },
         })
           .then((res) => res.json())
