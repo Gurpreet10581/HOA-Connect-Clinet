@@ -5,13 +5,12 @@ import APIURL from '../Helpers/environment';
 
 type AcceptedProps = {
     updateToken:string;
-    setResponse: any;
 }
 
 type responseState ={
     description: string,
-    userId: number,
-    profileId: number,
+    // userId: number,
+    // profileId: number,
 }
 
 
@@ -20,20 +19,20 @@ class CreateResponse extends Component <AcceptedProps, responseState>{
         super(props);
         this.state= {
             description: '',
-            userId: 0,
-            profileId: 0
+            // userId: 0,
+            // profileId: 0
         }
     }
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const url = `${APIURL}/response/newResponse/:id`;
+        const url = `${APIURL}/response/newResponse/:id`;//might have an issue with route
     
         const postSend = {
           responseState: {
             description: this.state.description,
-            userId: this.state.userId,
-            profileId: this.state.profileId
+            // userId: this.state.userId,
+            // profileId: this.state.profileId
           },
         };
     
@@ -50,7 +49,7 @@ class CreateResponse extends Component <AcceptedProps, responseState>{
             console.log(json);
             if (json.message === "A new response has been created") {
               console.log("Response has been created");
-              this.props.setResponse(json.responseState.description, json.responseState.userId, json.responseState.profileId);
+              this.setState(json.responseState.description);
             }
           })
           .catch((err) => console.log(err));

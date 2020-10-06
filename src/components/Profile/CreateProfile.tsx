@@ -3,15 +3,15 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import APIURL from '../Helpers/environment';
 
+
 type AcceptedProps = {
     updateToken:string;
-    setProfile: any;
-}
-
-type profileState ={
+    
+  }
+  
+  type profileState ={
     address: string,
     about: string,
-    userId: number,
 }
 
 
@@ -21,10 +21,9 @@ class CreateProfile extends Component <AcceptedProps, profileState>{
         this.state= {
             address: '',
             about: '',
-            userId: 0,
         }
     }
-
+    
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const url = `${APIURL}/profile/newProfile`;
@@ -33,7 +32,6 @@ class CreateProfile extends Component <AcceptedProps, profileState>{
           profileState: {
             address: this.state.address,
             about: this.state.about,
-            userId: this.state.userId
           },
         };
     
@@ -50,7 +48,7 @@ class CreateProfile extends Component <AcceptedProps, profileState>{
             console.log(json);
             if (json.message === "A new profile has been created") {
               console.log("Profile has been created");
-              this.props.setProfile(json.profileState.address, json.profileState.about, json.profileState.userId);
+              this.setState({address: json.profileState.address, about: json.profileState.about})
             }
           })
           .catch((err) => console.log(err));

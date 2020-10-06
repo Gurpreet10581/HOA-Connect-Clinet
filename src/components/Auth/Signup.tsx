@@ -97,7 +97,6 @@ export default class Signup extends Component <acceptedProps, State>{
                     autoComplete="First Name"
                     autoFocus
                     value={this.state.firstName}
-                    //onChange = {e=>this.setState({firstName:e.target.value})}
                     onChange={e => {
                       this.setState({ firstName: e.target.value })
                     }}

@@ -19,13 +19,13 @@ export interface Profile{
     about: string
 }
 
-export interface Post{
+export interface PostData{
     userId: number,
     title: string,
     description:string,
     profileId: number
 }
-export interface Response{
+export interface ResponseData{
     userId: number,
     description:string,
     postId: number

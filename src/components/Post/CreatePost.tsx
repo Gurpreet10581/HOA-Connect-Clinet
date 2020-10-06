@@ -5,14 +5,13 @@ import APIURL from '../Helpers/environment';
 
 type AcceptedProps = {
     updateToken:string;
-    setPost: any;
 }
 
 type postState ={
     title: string,
     description: string,
-    userId: number,
-    profileId: number,
+    // userId: number,
+    // profileId: number,
 }
 
 
@@ -22,21 +21,21 @@ class CreatePost extends Component <AcceptedProps, postState>{
         this.state= {
             title: '',
             description: '',
-            userId: 0,
-            profileId: 0
+            // userId: 0,
+            // profileId: 0
         }
     }
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const url = `${APIURL}/post/newPost/:id`;
+        const url = `${APIURL}/post/newPost/:id`;//might have an issue with route
     
         const postSend = {
           postState: {
             title: this.state.title,
             description: this.state.description,
-            userId: this.state.userId,
-            profileId: this.state.profileId
+            // userId: this.state.userId,
+            // profileId: this.state.profileId
           },
         };
     
@@ -53,7 +52,7 @@ class CreatePost extends Component <AcceptedProps, postState>{
             console.log(json);
             if (json.message === "A new post has been created") {
               console.log("Post has been created");
-              this.props.setPost(json.postState.title, json.postState.description, json.postState.userId, json.postState.profileId);
+              this.setState(json.postState.title, json.postState.description);
             }
           })
           .catch((err) => console.log(err));

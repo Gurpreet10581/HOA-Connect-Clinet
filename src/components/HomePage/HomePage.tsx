@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch,BrowserRouter as Router } from "react-router-dom";
-import CreateProfile from '../Profile/CreateProfile';
-import CreatePost from '../Post/CreatePost';
-import CreateResponse from '../Response/CreateResponse';
+import PostPage from '../Post/PostPage';
+import ProfilePage from '../Profile/ProfilePage';
+import ResponsePage from '../Response/ResponsePage';
 
 type HomeData={
 
@@ -22,7 +22,16 @@ export class HomePage extends Component<propsData, HomeData> {
         return (
 
                 <div>
-                    <h1> HomePage</h1>
+                    <h1 style={{color:"red"}}>Welcome to HOA Connect</h1>
+                    <ProfilePage updateToken={this.props.updateToken}  />
+                    <br />
+                    <br />
+                    <PostPage updateToken={this.props.updateToken} />
+                    <br />
+                    <br />
+                    <ResponsePage updateToken={this.props.updateToken} />
+                    <br />
+                    <br />
                 </div>
                 // <Router>
                 //  <nav id="navbar">
