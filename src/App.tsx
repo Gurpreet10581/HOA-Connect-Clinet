@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
 import Auth from "./components/Auth/Auth"
-import {User} from './components/Helpers/Interfaces';
+import {UserData} from './components/Helpers/Interfaces';
 import {Admin} from './components/Auth/Admin';
 import {HomePage} from './components/HomePage/HomePage'
 
 
 type Props= {
   updateToken: (token: string) => void;
-  setAdmin: (user: User) => void;
+  setAdmin: (user: UserData) => void;
 }
 type sessionData ={
   sessionToken: string | null;
@@ -39,7 +39,7 @@ class App extends React.Component<{},sessionData>{
       
     })
   }
-  setAdmin =(user: User) =>{
+  setAdmin =(user: UserData) =>{
     this.setState({
       admin: user.admin
     })

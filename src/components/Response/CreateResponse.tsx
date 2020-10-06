@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import APIURL from '../Helpers/environment';
 
 type AcceptedProps = {
-    updateToken:string;
+    updateToken:string | null;
 }
 
 type responseState ={
@@ -26,16 +26,16 @@ class CreateResponse extends Component <AcceptedProps, responseState>{
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const url = `${APIURL}/response/newResponse/:id`;//might have an issue with route
+        const url = `${APIURL}/response/newResponse/:id`;//might have an issue with route- it has to be some type of varible that is collecting the profile id and pass instead of the :id above 
     
         const postSend = {
-          responseState: {
+          response: {
             description: this.state.description,
             // userId: this.state.userId,
             // profileId: this.state.profileId
           },
         };
-    
+        if (this.props.updateToken !== null){
         fetch(url, {
           method: "POST",
           body: JSON.stringify(postSend),
@@ -49,10 +49,11 @@ class CreateResponse extends Component <AcceptedProps, responseState>{
             console.log(json);
             if (json.message === "A new response has been created") {
               console.log("Response has been created");
-              this.setState(json.responseState.description);
+              this.setState(json.response.description);
             }
           })
           .catch((err) => console.log(err));
+        }
       }
       render() {
         return (
@@ -75,7 +76,7 @@ class CreateResponse extends Component <AcceptedProps, responseState>{
                 value="Create"
                 data-test="submit"
               >
-                Create
+                Create A Response
               </Button>
             </form>
           </div>

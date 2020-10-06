@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from 'react';
-// import SignUp from './Signup';
 import Signin from './Signin';
+
 
 type AcceptedProps = {
     admin: boolean;
-    updateToken: any;
+    updateToken: string;
 }
 export const Admin: FunctionComponent<AcceptedProps> = (props) => {
     return (

@@ -102,6 +102,7 @@ export default class ProfilePage extends Component <propsData, profileData>{
               >
                 Get All Profiles
               </Button>
+              
                 {/* <button  > Profile Info  {this.fetchProfile}</button> */}
                 
 
@@ -112,7 +113,7 @@ export default class ProfilePage extends Component <propsData, profileData>{
                     })}
                     <h1> Profile Info {this.fetchProfile}</h1>
                     <button addProfile={this.state.addProfile} updateToken={this.props.updateToken}>Create Your Profile</button> */}
-                    </form>
+                </form>
                 </div>
         )
     }

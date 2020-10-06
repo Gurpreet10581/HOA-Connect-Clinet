@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Route, Switch,BrowserRouter as Router } from "react-router-dom";
+import CreatePost from '../Post/CreatePost';
 import PostPage from '../Post/PostPage';
+import CreateProfile from '../Profile/CreateProfile';
 import ProfilePage from '../Profile/ProfilePage';
+import CreateResponse from '../Response/CreateResponse';
 import ResponsePage from '../Response/ResponsePage';
 
 type HomeData={
@@ -25,13 +28,16 @@ export class HomePage extends Component<propsData, HomeData> {
                     <h1 style={{color:"red"}}>Welcome to HOA Connect</h1>
                     <ProfilePage updateToken={this.props.updateToken}  />
                     <br />
+                    <CreateProfile updateToken={this.props.updateToken}  />
                     <br />
                     <PostPage updateToken={this.props.updateToken} />
                     <br />
+                    <CreatePost updateToken={this.props.updateToken} />
                     <br />
-                    <ResponsePage updateToken={this.props.updateToken} />
+                    {/* <ResponsePage updateToken={this.props.updateToken} />
                     <br />
-                    <br />
+                    <CreateResponse updateToken={this.props.updateToken} />
+                    <br /> */}
                 </div>
                 // <Router>
                 //  <nav id="navbar">

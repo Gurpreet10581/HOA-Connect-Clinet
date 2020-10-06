@@ -5,7 +5,7 @@ import APIURL from '../Helpers/environment';
 
 
 type AcceptedProps = {
-    updateToken:string;
+    updateToken:string |null;
     
   }
   
@@ -19,6 +19,7 @@ class CreateProfile extends Component <AcceptedProps, profileState>{
     constructor(props: AcceptedProps){
         super(props);
         this.state= {
+          
             address: '',
             about: '',
         }
@@ -29,29 +30,31 @@ class CreateProfile extends Component <AcceptedProps, profileState>{
         const url = `${APIURL}/profile/newProfile`;
     
         const profileSend = {
-          profileState: {
+          profile: {
             address: this.state.address,
             about: this.state.about,
           },
         };
-    
-        fetch(url, {
-          method: "POST",
-          body: JSON.stringify(profileSend),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: this.props.updateToken,
-          },
-        })
+        if (this.props.updateToken !== null){
+
+          fetch(url, {
+            method: "POST",
+            body: JSON.stringify(profileSend),
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: this.props.updateToken,
+            },
+          })
           .then((res) => res.json())
           .then((json) => {
             console.log(json);
             if (json.message === "A new profile has been created") {
               console.log("Profile has been created");
-              this.setState({address: json.profileState.address, about: json.profileState.about})
+              this.setState({address: json.profile.address, about: json.profile.about})
             }
           })
           .catch((err) => console.log(err));
+        }
       }
       render() {
         return (
@@ -80,7 +83,7 @@ class CreateProfile extends Component <AcceptedProps, profileState>{
                 value="Create"
                 data-test="submit"
               >
-                Create
+                Create Your Profile
               </Button>
             </form>
           </div>

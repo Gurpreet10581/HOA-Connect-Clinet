@@ -1,9 +1,9 @@
 export interface UserData{
-    user: User,
+    user: UserData,
     message: string,
     sessionToken: string
   }
-export interface User{
+export interface UserData{
     firstName:string,
     lastName: string,
     email: string,

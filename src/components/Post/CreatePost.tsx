@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import APIURL from '../Helpers/environment';
 
 type AcceptedProps = {
-    updateToken:string;
+    updateToken:string |null;
 }
 
 type postState ={
@@ -31,14 +31,15 @@ class CreatePost extends Component <AcceptedProps, postState>{
         const url = `${APIURL}/post/newPost/:id`;//might have an issue with route
     
         const postSend = {
-          postState: {
+          post: {
             title: this.state.title,
             description: this.state.description,
             // userId: this.state.userId,
             // profileId: this.state.profileId
           },
         };
-    
+        
+        if (this.props.updateToken !== null){
         fetch(url, {
           method: "POST",
           body: JSON.stringify(postSend),
@@ -52,10 +53,11 @@ class CreatePost extends Component <AcceptedProps, postState>{
             console.log(json);
             if (json.message === "A new post has been created") {
               console.log("Post has been created");
-              this.setState(json.postState.title, json.postState.description);
+              this.setState(json.post.title, json.post.description);
             }
           })
           .catch((err) => console.log(err));
+        }
       }
       render() {
         return (
@@ -85,7 +87,7 @@ class CreatePost extends Component <AcceptedProps, postState>{
                 value="Create"
                 data-test="submit"
               >
-                Create
+                Create A Post
               </Button>
             </form>
           </div>
