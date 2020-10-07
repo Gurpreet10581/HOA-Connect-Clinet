@@ -100,7 +100,7 @@ export default class ProfilePage extends Component <propsData, profileData>{
                 value="Get"
                 data-test="submit"
               >
-                Get All Profiles
+                Get Your Profile
               </Button>
               
                 {/* <button  > Profile Info  {this.fetchProfile}</button> */}

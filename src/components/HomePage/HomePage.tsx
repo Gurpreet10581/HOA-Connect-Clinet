@@ -34,10 +34,10 @@ export class HomePage extends Component<propsData, HomeData> {
                     <br />
                     <CreatePost updateToken={this.props.updateToken} />
                     <br />
-                    {/* <ResponsePage updateToken={this.props.updateToken} />
+                    <ResponsePage updateToken={this.props.updateToken} />
                     <br />
                     <CreateResponse updateToken={this.props.updateToken} />
-                    <br /> */}
+                    <br />
                 </div>
                 // <Router>
                 //  <nav id="navbar">
