@@ -26,7 +26,8 @@ class CreateResponse extends Component <AcceptedProps, responseState>{
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const url = `${APIURL}/response/newResponse/`;//might have an issue with route- it has to be some type of varible that is collecting the profile id and pass instead of the :id above 
+        let id: number =1;
+        const url = `${APIURL}/response/newResponse/${id}`;//might have an issue with route- it has to be some type of varible that is collecting the profile id and pass instead of the :id above 
     
         const postSend = {
           response: {

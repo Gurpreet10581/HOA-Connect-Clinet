@@ -14,20 +14,20 @@ export interface UserData{
 }
 
 export interface Profile{
-    // userId: number,
+    userId: number,
     address: string,
     about: string
 }
 
 export interface PostData{
-    // userId: number,
+    userId: number,
     title: string,
     description:string,
-    // profileId: number
+    profileId: number
 }
 export interface ResponseData{
-    // userId: number,
+    userId: number,
     description:string,
-    // postId: number
+    postId: number
 }
 

@@ -28,7 +28,9 @@ class CreatePost extends Component <AcceptedProps, postState>{
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const url = `${APIURL}/post/newPost/:id`;//might have an issue with route
+        let id:any = (this.props.updateToken !== null); 
+
+        const url = `${APIURL}/post/newPost/${id}`;//might have an issue with route
     
         const postSend = {
           post: {

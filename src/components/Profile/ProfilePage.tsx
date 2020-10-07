@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 
 
 
+
 type profileData={
     profile: [Profile | null];
 }
@@ -24,7 +25,7 @@ export default class ProfilePage extends Component <propsData, profileData>{
         }
     }
     fetchProfile = () => {
-        const url = `${APIURL}/profile/all`;
+        const url = `${APIURL}/profile/`;
       
         if(this.props.updateToken){
 
@@ -43,39 +44,61 @@ export default class ProfilePage extends Component <propsData, profileData>{
                     this.setState(data.Profile.address, data.Profile.about)
                 }
                 // else{
+                //     if(this.props.updateToken){
 
-                //     {this.state.profile}
+                        
+                //         fetch(`${APIURL}/profile/newProfile`, {
+                //             method: "POST",
+                //             body: JSON.stringify(this.state.profile),
+                //             headers: {
+                //                 "Content-Type": "application/json",
+                //                 Authorization: this.props.updateToken,
+                //             },
+                //         })
+                //         .then((res) => res.json())
+                //         .then((json) => {
+                //             console.log(json);
+                //             if (json.message === "A new profile has been created") {
+                //                 console.log("Profile has been created");
+                //                 this.setState(json.Profile.address, json.Profile.about);
+                //             }
+                //         })
+                //         .catch((err) => console.log(err));
+                //     }
                 // }
             })
             .catch((err) => console.log(err));
         } 
         // else{
 
-        //         if (this.props.updateToken){
+                
         //             const url = `${APIURL}/profile/newProfile`;
             
         //             const profileSend = {
-        //             profileState: {
+        //             profile: {
         //                 Profile: {}
         //             },
         //         };
+        //         if(this.props.updateToken){
+
         //             fetch(url, {
         //                 method: "POST",
         //                 body: JSON.stringify(profileSend),
         //                 headers: {
-        //                   "Content-Type": "application/json",
-        //                   Authorization: this.props.updateToken,
+        //                     "Content-Type": "application/json",
+        //                     Authorization: this.props.updateToken,
         //                 },
-        //               })
-        //                 .then((res) => res.json())
-        //                 .then((json) => {
-        //                   console.log(json);
-        //                   if (json.message === "A new profile has been created") {
+        //             })
+        //             .then((res) => res.json())
+        //             .then((json) => {
+        //                 console.log(json);
+        //                 if (json.message === "A new profile has been created") {
         //                     console.log("Profile has been created");
-        //                     this.props.setProfile(json.profileState.address, json.profileState.about, json.profileState.userId);
-        //                   }
-        //                 })
-        //                 .catch((err) => console.log(err));
+        //                     this.setState(json.profile.address, json.profile.about);
+        //                 }
+        //             })
+        //             .catch((err) => console.log(err));
+                    
         //         }
         // }
     }

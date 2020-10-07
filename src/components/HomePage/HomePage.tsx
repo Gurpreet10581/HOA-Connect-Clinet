@@ -20,6 +20,17 @@ export class HomePage extends Component<propsData, HomeData> {
     constructor(props: propsData) {
         super(props)
     }
+    
+//     this.toggle = this.toggle.bind(this);
+//     this.state = {
+//       isOpen: false
+//     };
+//   }
+//   toggle() {
+//     this.setState({
+//       isOpen: !this.state.isOpen
+//     });
+//   }
 
     render() {
         return (
@@ -43,11 +54,11 @@ export class HomePage extends Component<propsData, HomeData> {
                 //  <nav id="navbar">
                 //  <ul>
                 //      <li id="name"><a href="#" className="nav-link">HOA Connect</a></li>
+                //      <li><a href="#" className="nav-link"><ProfilePage updateToken={this.props.updateToken}/></a></li>
                 //      <li><a onClick={this.props.clearToken} className="nav-link">Logout</a></li>
-                //      <li><a href="#" className="nav-link">My Profile</a></li>
-                //      {/* <li><Link to = "/profile" className="nav-link"> Profile </Link></li>
+                //      <li><Link to = "/profile" className="nav-link"> Profile </Link></li>
                 //      <li><Link to = "/post" className="nav-link"> Post </Link> </li>
-                //      <li><Link to = "/response" className="nav-link"> Response </Link> </li> */}
+                //      <li><Link to = "/response" className="nav-link"> Response </Link> </li>
                 //  </ul>
                 // </nav>
                 // <div className="navbarRoute">
