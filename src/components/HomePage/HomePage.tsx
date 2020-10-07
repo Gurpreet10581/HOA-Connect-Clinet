@@ -1,3 +1,4 @@
+import { Button } from '@material-ui/core';
 import React, { Component } from 'react';
 import { Route, Switch,BrowserRouter as Router } from "react-router-dom";
 import CreatePost from '../Post/CreatePost';
@@ -36,7 +37,13 @@ export class HomePage extends Component<propsData, HomeData> {
         return (
 
                 <div>
-                    <h1 style={{color:"red"}}>Welcome to HOA Connect</h1>
+                    <Button style={{float:"right", marginRight:"5em", color: "#e8af04", fontFamily: "cursive", borderColor:"#e8af04"}}
+                     type="submit"
+                     variant="outlined"
+                     color="primary"
+                     className='submit'
+                    onClick={this.props.clearToken} >Logout</Button>
+                    <h1 style={{color:"#e8af04", fontFamily:"cursive"}}>Welcome to HOA Connect</h1>
                     <ProfilePage updateToken={this.props.updateToken}  />
                     <br />
                     <CreateProfile updateToken={this.props.updateToken}  />

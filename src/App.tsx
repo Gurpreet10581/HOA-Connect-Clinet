@@ -55,13 +55,15 @@ class App extends React.Component<{},sessionData>{
     return (
       <div className="App">
       <div className="mainApp">
-        <h1>App Page</h1>
         {localStorage.getItem("token") === null ?
       <Auth updateToken={this.updateToken} admin={this.setAdmin} />:
       <HomePage clearToken={this.clearToken} updateToken= {this.state.sessionToken}  />
       }
       </div>
       </div>
+
+
+
       );
   }
 }

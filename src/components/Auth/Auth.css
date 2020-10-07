@@ -1,10 +1,10 @@
-/* .root {
+.root {
     height: 10vh !important;
     
 }
 
 .image {
-    background-image: url("../../assets/download.png") !important;
+    background-image: url("../../assets/avi-waxman-f9qZuKoZYoY-unsplash.jpg") !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-position: center !important;
@@ -16,10 +16,11 @@
     flex-direction: column !important;
     align-items: center !important;
     height:100vh;
-    background: linear-gradient(90deg, rgba(91,153,161,1) 0%, rgba(155,210,212,0.07373371711966037) 71%);
+    background: linear-gradient(90deg, rgb(171,127,97) 0%, rgba(79, 159, 161, 0.074) 71%);
+    
 }
 body{
-background: linear-gradient(90deg, rgba(91,153,161,1) 0%, #1976D2 71%);
+background: linear-gradient(90deg, rgb(177,135,107) 0%, #428fdb 71%);
 }
 .avatar {
     margin-top: 65px !important;
@@ -42,5 +43,5 @@ background: linear-gradient(90deg, rgba(91,153,161,1) 0%, #1976D2 71%);
 }
 
 body{
-  background: linear-gradient(90deg, rgba(91,153,161,1) 0%, #1976D2 71%);
-} */
+  background: linear-gradient(90deg,rgb(177,135,107) 0%, #428fdb 71%);
+}
