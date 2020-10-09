@@ -5,7 +5,9 @@ import APIURL from '../Helpers/environment';
 // import {Profile} from '../Helpers/Interfaces';
 
 type acceptedProps ={
-    updateToken: string | null;
+    // updateToken: string | null;
+    updateToken: (newToken: string) => void,
+    sessionToken: string | null,
 }
 
 type profileData={
@@ -17,7 +19,7 @@ type profileData={
 class EditProfile extends Component<acceptedProps, profileData> {
     constructor(props: acceptedProps){
         super(props);
-        console.log(props)
+        // console.log(props)
         this.state= {
           
           address: '',
@@ -28,7 +30,7 @@ class EditProfile extends Component<acceptedProps, profileData> {
     editProfile =(event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
 
-            if(this.props.updateToken !== null ){
+            if(this.props.sessionToken !== null ){
             let id:number =1;
             fetch(`${APIURL}/profile/${id}`, {
                 method: 'PUT',
@@ -38,7 +40,7 @@ class EditProfile extends Component<acceptedProps, profileData> {
                 }),
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization:this.props.updateToken
+                    Authorization:this.props.sessionToken
                 },
                 
             })
@@ -71,13 +73,14 @@ class EditProfile extends Component<acceptedProps, profileData> {
                 onChange={(e) =>
                   this.setState({ ...this.state, about: e.target.value })
                 }
-              />
+              /><br /> <br />
               <Button
                 size="small"
                 variant="outlined"
                 type="submit"
                 value="Create"
                 data-test="submit"
+                
               >
                 Edit Profile
               </Button>

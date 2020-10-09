@@ -2,13 +2,19 @@ import React, { Component } from 'react';
 import APIURL from '../Helpers/environment';
 import {ResponseData} from '../Helpers/Interfaces';
 import Button from "@material-ui/core/Button";
+import CreateResponse from './CreateResponse';
+import GetResponse from './GetResponse';
+import { Grid } from '@material-ui/core';
+import EditResponse from './EditResponse';
+import DeleteResponse from './DeleteResponse';
 
 type responseData={
     response: [ResponseData | null];
 }
 
 type propsData = {
-    updateToken: string | null,
+    updateToken: (newToken: string) => void,
+    sessionToken: string | null,
 }
 
 export default class ResponsePage extends Component <propsData, responseData>{
@@ -25,13 +31,13 @@ export default class ResponsePage extends Component <propsData, responseData>{
     fetchResponse = () => {
         const url = `${APIURL}/response/`;
       
-        if(this.props.updateToken){
+        if(this.props.sessionToken){
 
             fetch(url, {
                 method: 'GET',
                 headers:  {
                     "Content-Type": "application/json",
-                    Authorization: this.props.updateToken,
+                    Authorization: this.props.sessionToken,
                 },
             })
             .then((res) => res.json())
@@ -51,7 +57,7 @@ export default class ResponsePage extends Component <propsData, responseData>{
 
     render( ){
         return(
-            <div>
+            <div  className="main" style={{marginTop:"5em"}}>
                 <Button onClick={this.fetchResponse}
                 size="small"
                 variant="outlined"
@@ -61,7 +67,31 @@ export default class ResponsePage extends Component <propsData, responseData>{
               >
                 Get All Responses
               </Button>
-                </div>
+              <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
+                        
+                        
+                        <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
+                            {/* <Grid item>
+                                <GetResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken} />
+                            </Grid> */}
+                            <Grid item>
+                                <CreateResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}/>
+                            </Grid> <br /> <br />
+                            <Grid item>
+                                <EditResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}/>
+                            </Grid> <br /> <br />
+                            <Grid item>
+                                <DeleteResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                
+
+              {/* <GetResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken} />
+              <CreateResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}/>
+              <EditResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken} />
+              <DeleteResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken } /> */}
+            </div>
         )
     }
 }

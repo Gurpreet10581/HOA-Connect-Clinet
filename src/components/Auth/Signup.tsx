@@ -70,6 +70,8 @@ export default class Signup extends Component <acceptedProps, State>{
       .catch(err => console.log(err))
 
     }
+
+    
              
    
     render() {

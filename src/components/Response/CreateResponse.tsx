@@ -4,7 +4,10 @@ import Button from "@material-ui/core/Button";
 import APIURL from '../Helpers/environment';
 
 type AcceptedProps = {
-    updateToken:string | null;
+    // updateToken:string | null;
+    updateToken: (newToken: string) => void,
+    sessionToken: string | null,
+
 }
 
 type responseState ={
@@ -36,13 +39,13 @@ class CreateResponse extends Component <AcceptedProps, responseState>{
             // profileId: this.state.profileId
           },
         };
-        if (this.props.updateToken !== null){
+        if (this.props.sessionToken !== null){
         fetch(url, {
           method: "POST",
           body: JSON.stringify(postSend),
           headers: {
             "Content-Type": "application/json",
-            Authorization: this.props.updateToken,
+            Authorization: this.props.sessionToken,
           },
         })
           .then((res) => res.json())

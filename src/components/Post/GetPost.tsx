@@ -4,7 +4,9 @@ import APIURL from '../Helpers/environment';
 
 
 type AcceptedProps = {
-    updateToken:string;
+    // updateToken:string | null;
+    updateToken: (newToken: string) => void,
+    sessionToken: string | null,
 }
 
 type postState ={
@@ -28,12 +30,12 @@ class GetPost extends Component <AcceptedProps, postState>{
     }
 
     fetchPost = () => {
-      if (this.props.updateToken){
+      if (this.props.sessionToken){
         fetch(`${APIURL}/post/`,{
           method:"Get",
           headers: new Headers({
             "Content-Type": "application/json",
-            "Authorization": this.props.updateToken
+            "Authorization": this.props.sessionToken
           }),
         })
         .then((res) => {
@@ -52,12 +54,12 @@ class GetPost extends Component <AcceptedProps, postState>{
     }
 
     PostByID = (id: number | undefined) => {
-      if (this.props.updateToken){
+      if (this.props.sessionToken){
         fetch(`${APIURL}/post/${id}`,{
           method:"Get",
           headers: new Headers({
             "Content-Type": "application/json",
-            "Authorization": this.props.updateToken
+            "Authorization": this.props.sessionToken
           }),
         })
         .then((res) => {
@@ -70,11 +72,8 @@ class GetPost extends Component <AcceptedProps, postState>{
       render() {
         return (
           <div>
-             {/* <Button onClick={this.PostByID}>
-                Get All Posts
-              </Button>   
-              Ask why onclick not working*/}
-
+           
+            
              <Button onClick={this.fetchPost}
                 size="small"
                 variant="outlined"
@@ -84,6 +83,8 @@ class GetPost extends Component <AcceptedProps, postState>{
               >
                 Get All Posts
               </Button>
+
+
             {/* <form onSubmit={this.fetchPost.bind(this)}>
               <TextField
                 label="Title"

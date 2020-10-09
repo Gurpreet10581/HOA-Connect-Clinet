@@ -1,11 +1,16 @@
-import React from "react";
+import React, { Component } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
+import AppBarStyles from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-// import Button from "@material-ui/core/Button";
-// import IconButton from "@material-ui/core/IconButton";
-// import MenuIcon from "@material-ui/icons/Menu";
+import { Button} from '@material-ui/core';
+import { Route, Switch,Link } from "react-router-dom";
+import HomePage from "../HomePage/HomePage";
+import ProfilePage from "../Profile/ProfilePage";
+import PostPage from "../Post/PostPage";
+import ResponsePage from "../Response/ResponsePage";
+
+
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,21 +27,57 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type NavProps = {
-  updateToken: string | null;
+  updateToken: (newToken: string) => void,
+  clearToken: () => void,
+  sessionToken: string | null,
+
+
 };
 
-export default function ButtonAppBar() {
-  const classes = useStyles();
+export default class Navbar extends Component<NavProps, {}> {
+ constructor(props: NavProps) {
+    super(props);
+    this.state = {};
+    // console.log(props);
+  }
+    render(){
 
-  return (
-    <div className={classes.root}>
-      <AppBar position="sticky">
-        <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            HOA CONNECT
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+      return (
+        <div className="navDiv">
+            <AppBarStyles position="fixed">
+
+              <Toolbar>
+              
+                {/* <Link to='/'><Button >Home</Button></Link> */}
+                <Link to='/profilePage'><Button >Profile</Button></Link>
+                <Link to='/postPage'><Button >Posts</Button></Link>
+                <Link to='/responsePage'><Button >Responses</Button></Link>
+                {/* <Link to='/auth'><Button >Sign Out</Button></Link> */}
+
+                <Button onClick={this.props.clearToken}>
+                  Logout
+                </Button>
+
+              </Toolbar>
+                  {/* <Button style={{ marginRight: "5em" }} onClick={this.props.clearToken}>
+                  Home
+                </Button> */}
+            </AppBarStyles>
+          <div>
+            <Switch>
+                {/* <Route exact path='/homePage'>
+                  <HomePage updateToken={this.props.updateToken} clearToken={this.props.clearToken} sessionToken={this.props.sessionToken} />
+                </Route> */}
+                <Route exact path='/profilePage'>
+                  <ProfilePage updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                </Route> <Route exact path='/postPage'>
+                  <PostPage updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                </Route> <Route exact path='/responsePage'>
+                  <ResponsePage updateToken={this.props.updateToken}sessionToken={this.props.sessionToken}  />
+                </Route>
+            </Switch>
+          </div>
+      </div>
+    );
+  }
 }

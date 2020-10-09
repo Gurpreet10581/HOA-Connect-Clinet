@@ -3,6 +3,9 @@ import APIURL from '../Helpers/environment';
 import {Profile} from '../Helpers/Interfaces';
 import Button from "@material-ui/core/Button";
 import CreateProfile from './CreateProfile';
+import EditProfile from './EditProfile';
+import DeleteProfile from './DeleteProfile';
+import { Grid } from '@material-ui/core';
 
 
 
@@ -12,10 +15,11 @@ type profileData={
 }
 
 type propsData = {
-    updateToken: string | null,
-
-
+    updateToken: (newToken: string) => void,
+    sessionToken: string | null,
 }
+
+
 
 export default class ProfilePage extends Component <propsData, profileData>{
     constructor(props: propsData){
@@ -28,13 +32,13 @@ export default class ProfilePage extends Component <propsData, profileData>{
     fetchProfile = () => {
         const url = `${APIURL}/profile/`;
       
-        if(this.props.updateToken){
+        if(this.props.sessionToken){
 
             fetch(url, {
                 method: 'GET',
                 headers:  {
                     "Content-Type": "application/json",
-                    Authorization: this.props.updateToken,
+                    Authorization: this.props.sessionToken,
                 },
             })
             .then((res) => res.json())
@@ -57,24 +61,39 @@ export default class ProfilePage extends Component <propsData, profileData>{
         this.fetchProfile();
     }
 
+    componentDidUpdate(){
+        // console.log("UPDATE");
+    }
     render( ){
         return(
-            <div className="main">
+            <div className="main" style={{marginTop:"5em"}}>
                 <form>
-                <Button onClick={this.fetchProfile}
-                size="small"
-                variant="outlined"
-                type="submit"
-                value="Get"
-                data-test="submit"
-              >
-                Get Your Profile
-              </Button>
-                <br />
+                    <Button onClick={this.fetchProfile}
+                    size="small"
+                    variant="outlined"
+                    type="submit"
+                    value="Get"
+                    data-test="submit"
+                    >
+                    Get Your Profile
+                     </Button>
+                    <br />
+                    <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
+                        
+                        
+                        <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
+                            <Grid item>
+                                <CreateProfile updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                            </Grid> <br /> <br />
+                            <Grid item>
+                                <EditProfile updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                            </Grid> <br /> <br />
+                            <Grid item>
+                                <DeleteProfile updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </form>
-        {/* <p> {`Address: ${this.state.profile}`}</p>
-        <p> {`About: ${this.state.profile}`}</p> */}
-              {/* <CreateProfile updateToken={this.props.updateToken}  /> */}
 
 
             </div>

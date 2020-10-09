@@ -5,7 +5,9 @@ import APIURL from '../Helpers/environment';
 
 
 type acceptedProps ={
-    updateToken: string | null;
+    // updateToken: string | null;
+    updateToken: (newToken: string) => void,
+    sessionToken: string | null,
 }
 
 type postData={
@@ -17,19 +19,19 @@ class DeletePost extends Component<acceptedProps, postData> {
 
     constructor(props: acceptedProps){
         super(props)
-        console.log(props)
+        // console.log(props)
     }
     
     
     deletePost = (): any => {
-        if(this.props.updateToken !== null){
+        if(this.props.sessionToken !== null){
 
             let id:number = 1; 
             fetch(`${APIURL}/post/${id}`, {
                 method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization:this.props.updateToken
+                    Authorization:this.props.sessionToken
                 },
             })
             .then(res => res.json())

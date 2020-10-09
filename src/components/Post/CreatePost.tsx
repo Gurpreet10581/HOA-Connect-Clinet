@@ -4,7 +4,9 @@ import Button from "@material-ui/core/Button";
 import APIURL from '../Helpers/environment';
 
 type AcceptedProps = {
-    updateToken:string |null;
+    // updateToken:string |null;
+    updateToken: (newToken: string) => void,
+    sessionToken: string | null,
 }
 
 type postState ={
@@ -28,7 +30,7 @@ class CreatePost extends Component <AcceptedProps, postState>{
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        let id:any = (this.props.updateToken !== null); 
+        let id:any = (this.props.sessionToken !== null); 
 
         const url = `${APIURL}/post/newPost/4`;//might have an issue with route
     
@@ -41,13 +43,13 @@ class CreatePost extends Component <AcceptedProps, postState>{
           },
         };
         
-        if (this.props.updateToken !== null){
+        if (this.props.sessionToken !== null){
         fetch(url, {
           method: "POST",
           body: JSON.stringify(postSend),
           headers: {
             "Content-Type": "application/json",
-            Authorization: this.props.updateToken,
+            Authorization: this.props.sessionToken,
           },
         })
           .then((res) => res.json())

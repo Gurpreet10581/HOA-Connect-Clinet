@@ -1,12 +1,12 @@
 import { Button } from '@material-ui/core';
 import React, { Component } from 'react';
-import { Route, Switch,BrowserRouter as Router } from "react-router-dom";
 import CreatePost from '../Post/CreatePost';
 import PostPage from '../Post/PostPage';
 import CreateProfile from '../Profile/CreateProfile';
 import ProfilePage from '../Profile/ProfilePage';
 import CreateResponse from '../Response/CreateResponse';
 import ResponsePage from '../Response/ResponsePage';
+import Navbar from '../NavBar/Navbar';
 
 type HomeData={
 
@@ -14,7 +14,9 @@ type HomeData={
 
 type propsData = {
     clearToken: () => void,
-    updateToken: string | null,
+    updateToken: (newToken: string) => void,
+    sessionToken: string | null,
+    
 }
 
 export class HomePage extends Component<propsData, HomeData> {
@@ -22,17 +24,6 @@ export class HomePage extends Component<propsData, HomeData> {
         super(props)
     }
     
-//     this.toggle = this.toggle.bind(this);
-//     this.state = {
-//       isOpen: false
-//     };
-//   }
-//   toggle() {
-//     this.setState({
-//       isOpen: !this.state.isOpen
-//     });
-//   }
-
     render() {
         return (
 
@@ -42,20 +33,22 @@ export class HomePage extends Component<propsData, HomeData> {
                      variant="outlined"
                      color="primary"
                      className='submit'
-                    onClick={this.props.clearToken} >Logout</Button>
-                    <h1 style={{color:"#e8af04", fontFamily:"cursive"}}>Welcome to HOA Connect</h1>
-                    <ProfilePage updateToken={this.props.updateToken}  />
+                    onClick={this.props.clearToken} >Sign Out</Button>
+                    
+                    <Navbar clearToken={this.props.clearToken} updateToken={this.props.updateToken} sessionToken={this.props.sessionToken}  />
                     <br />
-                    <CreateProfile updateToken={this.props.updateToken}  />
                     <br />
-                    <PostPage updateToken={this.props.updateToken} />
+                    {/* <CreateProfile sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}  />
                     <br />
-                    <CreatePost updateToken={this.props.updateToken} />
+                    <CreatePost sessionToken={this.props.sessionToken} updateToken={this.props.updateToken} />
                     <br />
-                    <ResponsePage updateToken={this.props.updateToken} />
+                    <CreateResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken} />
                     <br />
-                    <CreateResponse updateToken={this.props.updateToken} />
+                    <ProfilePage sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}  />
                     <br />
+                    <PostPage sessionToken={this.props.sessionToken} updateToken={this.props.updateToken} />
+                    <br />
+                    <ResponsePage sessionToken={this.props.sessionToken}updateToken={this.props.updateToken} /> */}
                 </div>
                 // <Router>
                 //  <nav id="navbar">

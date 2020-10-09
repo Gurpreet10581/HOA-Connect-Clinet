@@ -2,13 +2,20 @@ import React, { Component } from 'react';
 import APIURL from '../Helpers/environment';
 import {PostData} from '../Helpers/Interfaces';
 import Button from "@material-ui/core/Button";
+import GetPost from './GetPost';
+import CreatePost from './CreatePost';
+import EditPost from './EditPost';
+import DeletePost from './DeletePost';
+import { Grid } from '@material-ui/core';
+
 
 type postData={
     post: [PostData | null];
 }
 
 type propsData = {
-    updateToken: string | null,
+    updateToken: (newToken: string) => void,
+    sessionToken: string | null,
 }
 
 export default class PostPage extends Component <propsData, postData>{
@@ -25,13 +32,13 @@ export default class PostPage extends Component <propsData, postData>{
     fetchPost = () => {
         const url = `${APIURL}/post/`;
       
-        if(this.props.updateToken){
+        if(this.props.sessionToken){
 
             fetch(url, {
                 method: 'GET',
                 headers:  {
                     "Content-Type": "application/json",
-                    Authorization: this.props.updateToken,
+                    Authorization: this.props.sessionToken,
                 },
             })
             .then((res) => res.json())
@@ -53,7 +60,9 @@ export default class PostPage extends Component <propsData, postData>{
 
     render( ){
         return(
-            <div>
+            <div  className="main" style={{marginTop:"5em"}}>
+                
+                {/* <Route exact path="/"><Auth updateToken={updateToken} clearToken={clearToken}/></Route> */}
                 <Button onClick={this.fetchPost}
                 size="small"
                 variant="outlined"
@@ -62,8 +71,32 @@ export default class PostPage extends Component <propsData, postData>{
                 data-test="submit"
               >
                 Get All Posts
-              </Button>
-                </div>
+                </Button>
+                <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
+                        
+                        
+                        <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
+                            {/* <Grid item>
+                                <GetPost updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                            </Grid> <br /> <br /> */}
+                            <Grid item>
+                                <CreatePost updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                            </Grid> <br /> <br />
+                            <Grid item>
+                                <EditPost updateToken={this.props.updateToken} sessionToken={this.props.sessionToken}/>
+                            </Grid>
+                            <Grid item>
+                                <DeletePost updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                {/* <GetPost updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                <CreatePost updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} />
+                <EditPost updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} />    
+                <DeletePost updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} /> */}
+
+            </div>
         )
     }
 }

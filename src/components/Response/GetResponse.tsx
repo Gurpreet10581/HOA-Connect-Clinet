@@ -3,7 +3,9 @@ import Button from "@material-ui/core/Button";
 import APIURL from '../Helpers/environment';
 
 type AcceptedProps = {
-    updateToken:string;
+    // updateToken:string | null;
+    updateToken: (newToken: string) => void,
+    sessionToken: string | null,
 }
 
 type responseState ={
@@ -24,12 +26,12 @@ class GetResponse extends Component <AcceptedProps, responseState>{
     }
 
     fetchResponse = () => {
-      if (this.props.updateToken){
+      if (this.props.sessionToken){
         fetch(`${APIURL}/response/`,{
           method:"Get",
           headers: new Headers({
             "Content-Type": "application/json",
-            "Authorization": this.props.updateToken
+            "Authorization": this.props.sessionToken
           }),
         })
         .then((res) => {
@@ -49,12 +51,12 @@ class GetResponse extends Component <AcceptedProps, responseState>{
 
 
     ResponseByID = (id: number | undefined) => {
-      if (this.props.updateToken){
+      if (this.props.sessionToken){
         fetch(`${APIURL}/response/${id}`,{
           method:"Get",
           headers: new Headers({
             "Content-Type": "application/json",
-            "Authorization": this.props.updateToken
+            "Authorization": this.props.sessionToken
           }),
         })
         .then((res) => {

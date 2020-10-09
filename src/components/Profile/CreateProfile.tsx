@@ -5,7 +5,9 @@ import APIURL from '../Helpers/environment';
 
 
 type AcceptedProps = {
-    updateToken:string |null;
+    // updateToken:string |null;
+    updateToken: (newToken: string) => void,
+    sessionToken: string | null,
     
   }
   
@@ -35,14 +37,14 @@ class CreateProfile extends Component <AcceptedProps, profileState>{
             about: this.state.about,
           },
         };
-        if (this.props.updateToken !== null){
+        if (this.props.sessionToken !== null){
 
           fetch(url, {
             method: "POST",
             body: JSON.stringify(profileSend),
             headers: {
               "Content-Type": "application/json",
-              Authorization: this.props.updateToken,
+              Authorization: this.props.sessionToken,
             },
           })
           .then((res) => res.json())
