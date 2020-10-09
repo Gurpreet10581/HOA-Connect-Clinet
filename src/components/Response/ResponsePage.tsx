@@ -26,7 +26,7 @@ export default class ResponsePage extends Component <propsData, responseData>{
         }
     }
     componentDidMount() {
-        // this.fetchpost();
+        this.fetchResponse();
     }
     fetchResponse = () => {
         const url = `${APIURL}/response/`;
@@ -52,7 +52,21 @@ export default class ResponsePage extends Component <propsData, responseData>{
     myResponseHandler = (event: any)=> {
         this.setState({response: event.target.value})
     }
-    
+    handleDelete = (id: number | undefined) => {
+        if (this.props.sessionToken) {
+            fetch(`${APIURL}/response/${id}`, {
+                method: "DELETE",
+                headers: new Headers({
+                    "Content-Type": "application/json",
+                    'Authorization': this.props.sessionToken
+                }),
+            })
+                .then((res) => {
+                    this.fetchResponse()
+                })
+                .catch((err) => alert(err));
+        }
+    }
 
 
     render( ){

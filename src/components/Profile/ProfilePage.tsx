@@ -29,6 +29,9 @@ export default class ProfilePage extends Component <propsData, profileData>{
 
         }
     }
+    componentDidMount() {
+        this.fetchProfile();
+    }
     fetchProfile = () => {
         const url = `${APIURL}/profile/`;
       
@@ -57,10 +60,21 @@ export default class ProfilePage extends Component <propsData, profileData>{
         this.setState({profile: event.target.value})
     }
 
-    componentDidMount() {
-        this.fetchProfile();
+    handleDelete = (id: number | undefined) => {
+        if (this.props.sessionToken) {
+            fetch(`${APIURL}/profile/${id}`, {
+                method: "DELETE",
+                headers: new Headers({
+                    "Content-Type": "application/json",
+                    'Authorization': this.props.sessionToken
+                }),
+            })
+                .then((res) => {
+                    this.fetchProfile()
+                })
+                .catch((err) => alert(err));
+        }
     }
-
     componentDidUpdate(){
         // console.log("UPDATE");
     }
