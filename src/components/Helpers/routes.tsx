@@ -15,7 +15,7 @@ type propsData = {
     updateToken: (newToken: string) => void,
     sessionToken: string | null,
     clearToken: () => void,
-    admin: any;
+    admin: boolean;
 
 }
 
@@ -29,7 +29,7 @@ class Routes extends Component<propsData, routerState> {
             <div>
                 <Switch>
                     
-                    <Route exact path="/auth"><HomePage updateToken={this.props.updateToken}  clearToken={this.props.clearToken} sessionToken={this.props.sessionToken}/></Route>
+                    <Route exact path="/auth"><HomePage updateToken={this.props.updateToken}  clearToken={this.props.clearToken} sessionToken={this.props.sessionToken} admin={this.props.admin}  /></Route>
                     <Route exact path="/profilePage"><ProfilePage updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} /></Route>
                     <Route exact path="/postPage"><PostPage updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} /></Route>
                     <Route exact path="/responsePage"><ResponsePage updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} /></Route>

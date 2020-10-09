@@ -16,6 +16,7 @@ type propsData = {
     clearToken: () => void,
     updateToken: (newToken: string) => void,
     sessionToken: string | null,
+    admin: boolean ;
     
 }
 
@@ -35,7 +36,7 @@ export class HomePage extends Component<propsData, HomeData> {
                      className='submit'
                     onClick={this.props.clearToken} >Sign Out</Button>
                     
-                    <Navbar clearToken={this.props.clearToken} updateToken={this.props.updateToken} sessionToken={this.props.sessionToken}  />
+                    <Navbar clearToken={this.props.clearToken} updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} admin={this.props.admin}  />
                     <br />
                     <br />
                     {/* <CreateProfile sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}  />

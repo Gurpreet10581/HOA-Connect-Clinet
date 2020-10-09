@@ -4,8 +4,9 @@ import Signup from "./Signup";
 import Signin from "./Signin";
 
 type Props = {
-    updateToken: any,
-    admin: any;
+    updateToken: (newToken: string) => void,
+    sessionToken: string | null,
+    admin: boolean ;
 }
 const Auth: React.FC<Props> = (props: Props) => {
     return (

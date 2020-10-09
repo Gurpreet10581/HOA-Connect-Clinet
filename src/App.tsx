@@ -63,10 +63,10 @@ class App extends React.Component<{},sessionData>{
         {/* <h1> Welcome to HOA Connect </h1> */}
         
         {localStorage.getItem("token") === null ?
-      <Auth updateToken={this.updateToken} admin={this.setAdmin} />:
+      <Auth updateToken={this.updateToken} admin={this.state.admin} sessionToken={this.state.sessionToken}  />:
       <Router>
 
-        <Navbar clearToken={this.clearToken} updateToken={this.updateToken} sessionToken={this.state.sessionToken}   />
+        <Navbar clearToken={this.clearToken} updateToken={this.updateToken} sessionToken={this.state.sessionToken}  admin={this.state.admin}    />
       </Router>
       }
 

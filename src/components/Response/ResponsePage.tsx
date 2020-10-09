@@ -57,40 +57,33 @@ export default class ResponsePage extends Component <propsData, responseData>{
 
     render( ){
         return(
-            <div  className="main" style={{marginTop:"5em"}}>
+            <div  className="main" style={{marginTop:"5em",textAlign:"center"}}>
+                
+              <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
+                        <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
+                            <Grid item>
+                                <CreateResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}/>
+                            </Grid> <br /> <br />
+                            {/* <Grid item>
+                                <EditResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}/>
+                            </Grid> <br /> <br />
+                            <Grid item>
+                                <DeleteResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}/>
+                            </Grid> */}
+                        </Grid>
+                </Grid><br /> <br />  <hr />
+                <div style={{textAlign:"center"}}>
                 <Button onClick={this.fetchResponse}
                 size="small"
                 variant="outlined"
                 type="submit"
                 value="Get"
                 data-test="submit"
-              >
+                >
                 Get All Responses
               </Button>
-              <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
-                        
-                        
-                        <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
-                            {/* <Grid item>
-                                <GetResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken} />
-                            </Grid> */}
-                            <Grid item>
-                                <CreateResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}/>
-                            </Grid> <br /> <br />
-                            <Grid item>
-                                <EditResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}/>
-                            </Grid> <br /> <br />
-                            <Grid item>
-                                <DeleteResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}/>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                
-
-              {/* <GetResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken} />
-              <CreateResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}/>
-              <EditResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken} />
-              <DeleteResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken } /> */}
+                </div>
+              <hr />
             </div>
         )
     }

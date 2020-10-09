@@ -3,11 +3,15 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import AppBarStyles from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { Button} from '@material-ui/core';
-import { Route, Switch,Link } from "react-router-dom";
-import HomePage from "../HomePage/HomePage";
+import { Route, Switch,Link, BrowserRouter as Router } from "react-router-dom";
+// import HomePage from "../HomePage/HomePage";
 import ProfilePage from "../Profile/ProfilePage";
 import PostPage from "../Post/PostPage";
 import ResponsePage from "../Response/ResponsePage";
+// import Auth from '../Auth/Auth'
+// import Signup from "../Auth/Signup";
+// import Signin from "../Auth/Signin";
+import './NavBar.css';
 
 
 
@@ -30,6 +34,8 @@ type NavProps = {
   updateToken: (newToken: string) => void,
   clearToken: () => void,
   sessionToken: string | null,
+  admin: boolean;
+
 
 
 };
@@ -44,29 +50,23 @@ export default class Navbar extends Component<NavProps, {}> {
 
       return (
         <div className="navDiv">
+          <h1 className="glow"> HOA Connect</h1>
             <AppBarStyles position="fixed">
 
               <Toolbar>
-              
-                {/* <Link to='/'><Button >Home</Button></Link> */}
                 <Link to='/profilePage'><Button >Profile</Button></Link>
                 <Link to='/postPage'><Button >Posts</Button></Link>
                 <Link to='/responsePage'><Button >Responses</Button></Link>
-                {/* <Link to='/auth'><Button >Sign Out</Button></Link> */}
-
-                <Button onClick={this.props.clearToken}>
-                  Logout
-                </Button>
-
+                <Link to='/'><Button onClick={this.props.clearToken}>Sign Out</Button></Link>
               </Toolbar>
-                  {/* <Button style={{ marginRight: "5em" }} onClick={this.props.clearToken}>
-                  Home
-                </Button> */}
+               
             </AppBarStyles>
           <div>
             <Switch>
-                {/* <Route exact path='/homePage'>
-                  <HomePage updateToken={this.props.updateToken} clearToken={this.props.clearToken} sessionToken={this.props.sessionToken} />
+                {/* <Route exact path="/signup"><Signup updateToken={this.props.updateToken} /></Route>
+                <Route exact path="/signin"><Signin admin={this.props.admin} updateToken={this.props.updateToken}  /></Route>
+                <Route exact path='/auth'>
+                  <Auth updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} admin={this.props.admin}  />
                 </Route> */}
                 <Route exact path='/profilePage'>
                   <ProfilePage updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
@@ -74,6 +74,7 @@ export default class Navbar extends Component<NavProps, {}> {
                   <PostPage updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
                 </Route> <Route exact path='/responsePage'>
                   <ResponsePage updateToken={this.props.updateToken}sessionToken={this.props.sessionToken}  />
+                  
                 </Route>
             </Switch>
           </div>

@@ -24,7 +24,7 @@ type State ={
     lastName: string;
     email: string;
     password: string;
-    admin: boolean;
+    admin: boolean ;
     userName: string;
 }
 

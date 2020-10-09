@@ -61,41 +61,34 @@ export default class PostPage extends Component <propsData, postData>{
     render( ){
         return(
             <div  className="main" style={{marginTop:"5em"}}>
-                
-                {/* <Route exact path="/"><Auth updateToken={updateToken} clearToken={clearToken}/></Route> */}
+                <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
+                        
+                        
+                        <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
+                            <Grid item>
+                                <CreatePost updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                            </Grid>
+                            {/* <Grid item>
+                                <EditPost updateToken={this.props.updateToken} sessionToken={this.props.sessionToken}/>
+                            </Grid>
+                            <Grid item>
+                                <DeletePost updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                            </Grid> */}
+                        </Grid>
+                </Grid><br /> <br />  <hr />
+                <div style={{textAlign:"center"}}>
+
                 <Button onClick={this.fetchPost}
                 size="small"
                 variant="outlined"
                 type="submit"
                 value="Get"
                 data-test="submit"
-              >
+                >
                 Get All Posts
                 </Button>
-                <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
-                        
-                        
-                        <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
-                            {/* <Grid item>
-                                <GetPost updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
-                            </Grid> <br /> <br /> */}
-                            <Grid item>
-                                <CreatePost updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
-                            </Grid> <br /> <br />
-                            <Grid item>
-                                <EditPost updateToken={this.props.updateToken} sessionToken={this.props.sessionToken}/>
-                            </Grid>
-                            <Grid item>
-                                <DeletePost updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-
-                {/* <GetPost updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
-                <CreatePost updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} />
-                <EditPost updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} />    
-                <DeletePost updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} /> */}
-
+                </div>
+                <hr />
             </div>
         )
     }

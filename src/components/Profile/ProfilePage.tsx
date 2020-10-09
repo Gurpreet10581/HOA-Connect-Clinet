@@ -68,6 +68,22 @@ export default class ProfilePage extends Component <propsData, profileData>{
         return(
             <div className="main" style={{marginTop:"5em"}}>
                 <form>
+                   
+                    <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
+                        <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
+                            <Grid item>
+                                <CreateProfile updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                            </Grid> 
+                            {/* <Grid item>
+                                <EditProfile updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                            </Grid> <br /> <br />
+                            <Grid item>
+                                <DeleteProfile updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                            </Grid> */}
+                        </Grid>
+                    </Grid><br /> <br />  <hr />
+                    <div style={{textAlign:"center"}}>
+
                     <Button onClick={this.fetchProfile}
                     size="small"
                     variant="outlined"
@@ -77,25 +93,9 @@ export default class ProfilePage extends Component <propsData, profileData>{
                     >
                     Get Your Profile
                      </Button>
-                    <br />
-                    <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
-                        
-                        
-                        <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
-                            <Grid item>
-                                <CreateProfile updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
-                            </Grid> <br /> <br />
-                            <Grid item>
-                                <EditProfile updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
-                            </Grid> <br /> <br />
-                            <Grid item>
-                                <DeleteProfile updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
-                            </Grid>
-                        </Grid>
-                    </Grid>
+                    </div>
+                    <hr />
                 </form>
-
-
             </div>
         )
     }
