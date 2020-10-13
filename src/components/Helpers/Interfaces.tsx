@@ -14,7 +14,8 @@ export interface UserData{
 }
 
 export interface Profile{
-    userId: number,
+    id?: number,
+    userId?: number,
     address: string,
     about: string
 }

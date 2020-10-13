@@ -2,12 +2,14 @@ import React, {Component} from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import APIURL from '../Helpers/environment';
-// import {Profile} from '../Helpers/Interfaces';
+import {Profile} from '../Helpers/Interfaces';
 
 type acceptedProps ={
     // updateToken: string | null;
     updateToken: (newToken: string) => void,
     sessionToken: string | null,
+    data: Profile,
+    onDone?: Function
 }
 
 type profileData={
@@ -22,8 +24,8 @@ class EditProfile extends Component<acceptedProps, profileData> {
         // console.log(props)
         this.state= {
           
-          address: '',
-          about: '',
+          address: props.data.address,
+          about: props.data.about,
       }
     }
     
@@ -31,7 +33,7 @@ class EditProfile extends Component<acceptedProps, profileData> {
       event.preventDefault();
 
             if(this.props.sessionToken !== null ){
-            let id:number =1;
+            let id:number = Number(this.props.data.id) || 0;
             fetch(`${APIURL}/profile/${id}`, {
                 method: 'PUT',
                 body: JSON.stringify({
@@ -46,6 +48,9 @@ class EditProfile extends Component<acceptedProps, profileData> {
             })
             .then(res => res.json())
             .then((data) => {
+              if(typeof this.props.onDone === 'function'){
+                this.props.onDone();
+              }
                 console.log('Data', data)
             })
             .catch((err) => console.log(err));

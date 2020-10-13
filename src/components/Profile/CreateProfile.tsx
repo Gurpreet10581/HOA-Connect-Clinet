@@ -8,7 +8,7 @@ type AcceptedProps = {
     // updateToken:string |null;
     updateToken: (newToken: string) => void,
     sessionToken: string | null,
-    
+    onDone?: Function
   }
   
   type profileState ={
@@ -50,9 +50,13 @@ class CreateProfile extends Component <AcceptedProps, profileState>{
           .then((res) => res.json())
           .then((json) => {
             console.log(json);
+            
             if (json.message === "A new profile has been created") {
               console.log("Profile has been created");
               this.setState({address: json.profile.address, about: json.profile.about})
+            }
+            if(typeof this.props.onDone === 'function') {
+              this.props.onDone();
             }
           })
           .catch((err) => console.log(err));
