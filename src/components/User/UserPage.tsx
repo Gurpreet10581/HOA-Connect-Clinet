@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import APIURL from '../Helpers/environment';
-import {Profile} from '../Helpers/Interfaces';
+import {UserData} from '../Helpers/Interfaces';
 import Button from "@material-ui/core/Button";
-import CreateProfile from './CreateProfile';
+import SignUp from '../Auth/Signup';
 // import EditProfile from './EditProfile';
 // import DeleteProfile from './DeleteProfile';
 import { Grid } from '@material-ui/core';
@@ -10,8 +10,8 @@ import { Grid } from '@material-ui/core';
 
 
 
-type profileData={
-    profile: [Profile | null];
+type userData={
+    user: [UserData | null];
 }
 
 type propsData = {
@@ -21,19 +21,19 @@ type propsData = {
 
 
 
-export default class ProfilePage extends Component <propsData, profileData>{
+export default class userPage extends Component <propsData, userData>{
     constructor(props: propsData){
         super(props);
         this.state ={
-            profile: [null]
+            user: [null]
 
         }
     }
     componentDidMount() {
-        this.fetchProfile();
+        this.fetchUser();
     }
-    fetchProfile = () => {
-        const url = `${APIURL}/profile/`;
+    fetchUser = () => {
+        const url = `${APIURL}/user/`;
       
         if(this.props.sessionToken){
 
@@ -49,20 +49,21 @@ export default class ProfilePage extends Component <propsData, profileData>{
                 console.log(data);
                 if (data == null){
                     console.log('no results')
-                    this.setState(data.Profile.address, data.Profile.about)
+                    this.setState(data.user.firstName, data.user.lastName, /*data.user.email, data.user.password, data.user.admin, data.user.userName*/)
+    // not sure if all the properties need to be included in above line 52
                 }
             })
             .catch((err) => console.log(err));
         } 
       
     }
-    myProfileHandler = (event: any)=> {
-        this.setState({profile: event.target.value})
+    myuserHandler = (event: any)=> {
+        this.setState({user: event.target.value})
     }
 
     handleDelete = (id: number | undefined) => {
         if (this.props.sessionToken) {
-            fetch(`${APIURL}/profile/${id}`, {
+            fetch(`${APIURL}/user/${id}`, {
                 method: "DELETE",
                 headers: new Headers({
                     "Content-Type": "application/json",
@@ -70,7 +71,7 @@ export default class ProfilePage extends Component <propsData, profileData>{
                 }),
             })
                 .then((res) => {
-                    this.fetchProfile()
+                    this.fetchUser()
                 })
                 .catch((err) => alert(err));
         }
@@ -86,26 +87,26 @@ export default class ProfilePage extends Component <propsData, profileData>{
                     <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
                         <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
                             <Grid item>
-                                <CreateProfile updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                                <SignUp updateToken={this.props.updateToken}  />
                             </Grid> 
                             {/* <Grid item>
-                                <EditProfile updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                                <Edituser updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
                             </Grid> <br /> <br />
                             <Grid item>
-                                <DeleteProfile updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                                <Deleteuser updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
                             </Grid> */}
                         </Grid>
                     </Grid><br /> <br />  <hr />
                     <div style={{textAlign:"center"}}>
 
-                    <Button onClick={this.fetchProfile}
+                    <Button onClick={this.fetchUser}
                     size="small"
                     variant="outlined"
                     type="submit"
                     value="Get"
                     data-test="submit"
                     >
-                    Get Your Profile
+                    Get Your user
                      </Button>
                     </div>
                     <hr />

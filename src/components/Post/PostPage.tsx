@@ -127,8 +127,8 @@ export default class PostPage extends Component <propsData, postData>{
             { field: 'id', headerName: 'ID', width: 70 },
             { field: 'title', headerName: 'Title', width: 130 },
             { field: 'description', headerName: 'Description', width: 130 },
-            { field: 'likes', headerName: 'Likes', width: 130 },
-            { field: 'userId', headerName: 'UserID', width: 130 },
+            // { field: 'likes', headerName: 'Likes', width: 130 },
+            // { field: 'userId', headerName: 'UserID', width: 130 },
             { field: 'profileId', headerName: 'ProfileID', width: 130 },    
             { field: 'createdAt', headerName: 'Created', width: 230 }
           ];
