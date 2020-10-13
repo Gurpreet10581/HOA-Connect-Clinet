@@ -32,7 +32,7 @@ class Routes extends Component<propsData, routerState> {
                     <Route exact path="/auth"><HomePage updateToken={this.props.updateToken}  clearToken={this.props.clearToken} sessionToken={this.props.sessionToken} admin={this.props.admin}  /></Route>
                     <Route exact path="/profilePage"><ProfilePage updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} /></Route>
                     <Route exact path="/postPage"><PostPage updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} /></Route>
-                    <Route exact path="/responsePage"><ResponsePage updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} /></Route>
+                    <Route path="/responsePage/:id" component={(props: any) => <ResponsePage  updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} {...props} />}></Route>
                   
 
                 </Switch>

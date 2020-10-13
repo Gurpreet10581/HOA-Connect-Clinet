@@ -6,8 +6,14 @@ import APIURL from '../Helpers/environment';
 
 type acceptedProps ={
     // updateToken: string | null;
+    data: {
+      id: number,
+      title: string,
+      description: string
+    } | any,
     updateToken: (newToken: string) => void,
     sessionToken: string | null,
+    onDone: () => void
 }
 
 type postData={
@@ -22,15 +28,15 @@ class EditPost extends Component<acceptedProps, postData> {
         // console.log(props)
         this.state= {
           
-            title: '',
-            description: '',
+            title: this.props.data.title,
+            description: this.props.data.description,
         }
     }
     
     editPost=(event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
         if(this.props.sessionToken !== null ){
-            let id:number =1;
+            let id:number = this.props.data.id;
             fetch(`${APIURL}/post/${id}`, {
                 method: 'PUT',
                 body: JSON.stringify({
@@ -45,6 +51,9 @@ class EditPost extends Component<acceptedProps, postData> {
             })
             .then(res => res.json())
             .then((data) => {
+                if(typeof this.props.onDone === 'function') {
+                  this.props.onDone();
+                }
                 console.log('Data', data)
             })
             .catch((err) => console.log(err));

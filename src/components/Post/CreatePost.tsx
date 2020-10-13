@@ -32,7 +32,7 @@ class CreatePost extends Component <AcceptedProps, postState>{
         event.preventDefault();
         let id:any = (this.props.sessionToken !== null); 
 
-        const url = `${APIURL}/post/newPost/1`;//might have an issue with route
+        const url = `${APIURL}/post/newPost`;//might have an issue with route
     
         const postSend = {
           post: {

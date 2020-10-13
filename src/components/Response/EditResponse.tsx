@@ -8,6 +8,8 @@ type acceptedProps ={
     // updateToken: string | null;
     updateToken: (newToken: string) => void,
     sessionToken: string | null,
+    data: any,
+    onDone?: Function
 }
 
 type responseData={
@@ -20,7 +22,7 @@ class EditResponse extends Component<acceptedProps, responseData> {
         super(props);
         // console.log(props)
         this.state= {
-            description: '',
+            description: this.props.data.description,
             // userId: 0,
             // profileId: 0
         }
@@ -29,7 +31,7 @@ class EditResponse extends Component<acceptedProps, responseData> {
     editResponse =(event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
             if(this.props.sessionToken !== null ){
-            let id:number =1;
+            let id:number = Number(this.props.data.id);
             fetch(`${APIURL}/response/${id}`, {
                 method: 'PUT',
                 body: JSON.stringify({
@@ -44,6 +46,9 @@ class EditResponse extends Component<acceptedProps, responseData> {
             .then(res => res.json())
             .then((data) => {
                 console.log('Data', data)
+                if(typeof this.props.onDone === 'function') {
+                  this.props.onDone();
+                }
             })
             .catch((err) => console.log(err));
         }

@@ -5,6 +5,8 @@ import APIURL from '../Helpers/environment';
 
 type AcceptedProps = {
     // updateToken:string | null;
+    onDone?: Function,
+    id?: string,
     updateToken: (newToken: string) => void,
     sessionToken: string | null,
 
@@ -29,7 +31,7 @@ class CreateResponse extends Component <AcceptedProps, responseState>{
 
     handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        let id: number =1;
+        let id: number = Number(this.props.id);
         const url = `${APIURL}/response/newResponse/${id}`;//might have an issue with route- it has to be some type of varible that is collecting the profile id and pass instead of the :id above 
     
         const postSend = {
@@ -53,7 +55,11 @@ class CreateResponse extends Component <AcceptedProps, responseState>{
             console.log(json);
             if (json.message === "A new response has been created") {
               console.log("Response has been created");
-              this.setState(json.response.description);
+              this.setState({description: ''});
+            }
+
+            if(typeof this.props.onDone === 'function') {
+              this.props.onDone();
             }
           })
           .catch((err) => console.log(err));

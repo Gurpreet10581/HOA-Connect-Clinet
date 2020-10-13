@@ -20,12 +20,14 @@ export interface Profile{
 }
 
 export interface PostData{
-    userId: number,
-    title: string,
-    description:string,
-    profileId: number
+    id: number,
+    userId?: number,
+    title?: string,
+    description?:string,
+    profileId?: number
 }
 export interface ResponseData{
+    id: number,
     userId: number,
     description:string,
     postId: number

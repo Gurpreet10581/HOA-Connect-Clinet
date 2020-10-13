@@ -2,12 +2,14 @@ import { Button } from "@material-ui/core";
 import React, { Component } from "react";
 import {ResponseData} from '../Helpers/Interfaces';
 import APIURL from '../Helpers/environment';
-
+declare var window: any;
 
 type acceptedProps ={
     // updateToken: string | null;
     updateToken: (newToken: string) => void,
     sessionToken: string | null,
+    data: any,
+    onDone?: Function
 }
 
 type responseData={
@@ -24,9 +26,12 @@ class DeleteResponse extends Component<acceptedProps, responseData> {
     
     
     Deleteresponse = (): any => {
+        if(!window.confirm('Are you sure you want to delete this?')) {
+            return;
+        }
         if(this.props.sessionToken !== null){
 
-            let id:number = 1; 
+            let id:number = Number(this.props.data.id); 
             fetch(`${APIURL}/response/${id}`, {
                 method: 'DELETE',
                 headers: {
@@ -35,7 +40,12 @@ class DeleteResponse extends Component<acceptedProps, responseData> {
                 },
             })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                console.log(data);
+                if(typeof this.props.onDone === 'function') {
+                    this.props.onDone();
+                }
+            })
             .catch(err => console.log(err))
         }
     }

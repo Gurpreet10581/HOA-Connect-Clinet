@@ -56,7 +56,7 @@ export default class Navbar extends Component<NavProps, {}> {
               <Toolbar>
                 <Link to='/profilePage'><Button >Profile</Button></Link>
                 <Link to='/postPage'><Button >Posts</Button></Link>
-                <Link to='/responsePage'><Button >Responses</Button></Link>
+                {/*<Link to='/responsePage'><Button >Responses</Button></Link>*/}
                 <Link to='/'><Button onClick={this.props.clearToken}>Sign Out</Button></Link>
               </Toolbar>
                
@@ -72,10 +72,8 @@ export default class Navbar extends Component<NavProps, {}> {
                   <ProfilePage updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
                 </Route> <Route exact path='/postPage'>
                   <PostPage updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
-                </Route> <Route exact path='/responsePage'>
-                  <ResponsePage updateToken={this.props.updateToken}sessionToken={this.props.sessionToken}  />
+                </Route> <Route path="/responsePage/:id" component={(props: any) => <ResponsePage  updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} {...props} />}></Route>
                   
-                </Route>
             </Switch>
           </div>
       </div>

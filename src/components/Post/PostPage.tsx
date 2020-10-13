@@ -8,11 +8,18 @@ import EditPost from './EditPost';
 import DeletePost from './DeletePost';
 import { Grid } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { DataGrid, RowParams } from '@material-ui/data-grid';
 import { ListItem, ListItemAvatar, Avatar, ListItemText, ListItemSecondaryAction, List, Container } from '@material-ui/core';
 import StyledList from '../StyledComponets/StyledList';
+import { Link } from 'react-router-dom'
 
 type postData={
-    post: [PostData | null];
+    post: Array<PostData>;
+    selectedRow: any | null
+}
+
+type RowData = {
+    data: PostData
 }
 
 type propsData = {
@@ -25,8 +32,8 @@ export default class PostPage extends Component <propsData, postData>{
     constructor(props: propsData){
         super(props);
         this.state ={
-            post: [null]
-
+            post: [],
+            selectedRow: null
         }
     }
     componentDidMount() {
@@ -34,7 +41,7 @@ export default class PostPage extends Component <propsData, postData>{
     }
     fetchPost = () => {
         const url = `${APIURL}/post/`;
-      
+
         if(this.props.sessionToken){
 
             fetch(url, {
@@ -78,6 +85,18 @@ export default class PostPage extends Component <propsData, postData>{
         }
     }
 
+    onRowClick = (data : RowParams) => {
+        this.setState({selectedRow: data.data});
+    }
+
+    cancelEditing = () => {
+        this.setState({selectedRow: null});
+    }
+
+    onUpdated = () => {
+        this.cancelEditing();
+        this.fetchPost();
+    }
 
     render( ){
 
@@ -104,7 +123,15 @@ export default class PostPage extends Component <propsData, postData>{
         //     </Container>
         // )
 
-
+        const columns = [
+            { field: 'id', headerName: 'ID', width: 70 },
+            { field: 'title', headerName: 'Title', width: 130 },
+            { field: 'description', headerName: 'Description', width: 130 },
+            { field: 'likes', headerName: 'Likes', width: 130 },
+            { field: 'userId', headerName: 'UserID', width: 130 },
+            { field: 'profileId', headerName: 'ProfileID', width: 130 },    
+            { field: 'createdAt', headerName: 'Created', width: 230 }
+          ];
 
 
         return(
@@ -113,15 +140,22 @@ export default class PostPage extends Component <propsData, postData>{
                         
                         
                         <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
+                            
+                            {this.state.selectedRow ? (
+                                <>
+                                    <Grid item>
+                                        <EditPost onDone={this.onUpdated} data={this.state.selectedRow} updateToken={this.props.updateToken} sessionToken={this.props.sessionToken}/>
+                                    </Grid>
+                                    <Grid item>
+                                        <DeletePost onDone={this.onUpdated} data={this.state.selectedRow} updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                                    </Grid>
+                                    <Button onClick={this.cancelEditing}>Cancel Editing</Button>
+                                    <Link to={'/responsePage/' + this.state.selectedRow.id}>Show Responses</Link>
+                                </>)
+                            : 
                             <Grid item>
                                 <CreatePost updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
-                            </Grid>
-                            {/* <Grid item>
-                                <EditPost updateToken={this.props.updateToken} sessionToken={this.props.sessionToken}/>
-                            </Grid>
-                            <Grid item>
-                                <DeletePost updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
-                            </Grid> */}
+                            </Grid> }
                         </Grid>
                 </Grid><br /> <br />  <hr />
                 <div style={{textAlign:"center"}}>
@@ -137,6 +171,10 @@ export default class PostPage extends Component <propsData, postData>{
                 </Button>
                 </div>
                 <hr />
+                
+                <div style={{ height: 400, width: '100%' }}>
+                    <DataGrid rows={this.state.post} onRowClick={this.onRowClick} columns={columns} pageSize={5} />
+                </div>
             </div>
         )
     }

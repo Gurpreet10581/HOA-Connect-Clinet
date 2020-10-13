@@ -5,31 +5,41 @@ import Button from "@material-ui/core/Button";
 import CreateResponse from './CreateResponse';
 import GetResponse from './GetResponse';
 import { Grid } from '@material-ui/core';
+import { DataGrid, RowParams } from '@material-ui/data-grid';
 import EditResponse from './EditResponse';
 import DeleteResponse from './DeleteResponse';
+import { Route, BrowserRouter as Router, Link, match } from 'react-router-dom';
 
 type responseData={
-    response: [ResponseData | null];
+    response: Array<ResponseData>,
+    selectedRow: any | null
+}
+
+interface DetailParams {
+    id: string;
 }
 
 type propsData = {
     updateToken: (newToken: string) => void,
     sessionToken: string | null,
+    match?: match<DetailParams>
 }
+
 
 export default class ResponsePage extends Component <propsData, responseData>{
     constructor(props: propsData){
+        
         super(props);
         this.state ={
-            response: [null]
-
+            response: [],
+            selectedRow: null
         }
     }
     componentDidMount() {
         this.fetchResponse();
     }
     fetchResponse = () => {
-        const url = `${APIURL}/response/`;
+        const url = `${APIURL}/response/all/${this.props.match?.params.id}`;
       
         if(this.props.sessionToken){
 
@@ -43,6 +53,7 @@ export default class ResponsePage extends Component <propsData, responseData>{
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
+                this.setState({response: data})
             })
             .catch((err) => console.log(err));
         } 
@@ -68,22 +79,49 @@ export default class ResponsePage extends Component <propsData, responseData>{
         }
     }
 
+    onUpdated = () => {
+        this.cancelEditing();
+        this.fetchResponse();
+    }
+
+    onRowClick = (data : RowParams) => {
+        this.setState({selectedRow: data.data});
+    }
+
+    cancelEditing = () => {
+        this.setState({selectedRow: null});
+    }
 
     render( ){
+
+        const columns = [
+            { field: 'id', headerName: 'ID', width: 70 },
+            { field: 'description', headerName: 'Description', width: 130 },
+            { field: 'userId', headerName: 'UserID', width: 130 },
+            { field: 'createdAt', headerName: 'Created', width: 230 }
+          ];
+        
         return(
             <div  className="main" style={{marginTop:"5em",textAlign:"center"}}>
                 
               <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
                         <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
+
+                        {this.state.selectedRow ? (
+                                <>
+                                    <Grid item>
+                                        <EditResponse onDone={this.onUpdated} data={this.state.selectedRow} sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}/>
+                                    </Grid> <br /> <br />
+                                    <Grid item>
+                                        <DeleteResponse onDone={this.onUpdated} data={this.state.selectedRow} sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}/>
+                                    </Grid>
+                                    <Button onClick={this.cancelEditing}>Cancel Editing</Button>
+                                </>)
+                            : 
                             <Grid item>
-                                <CreateResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}/>
-                            </Grid> <br /> <br />
-                            {/* <Grid item>
-                                <EditResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}/>
-                            </Grid> <br /> <br />
-                            <Grid item>
-                                <DeleteResponse sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}/>
-                            </Grid> */}
+                                <CreateResponse onDone={this.onUpdated} id={this.props.match?.params.id} sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}/>
+                            </Grid>} <br /> <br />
+                            
                         </Grid>
                 </Grid><br /> <br />  <hr />
                 <div style={{textAlign:"center"}}>
@@ -98,6 +136,11 @@ export default class ResponsePage extends Component <propsData, responseData>{
               </Button>
                 </div>
               <hr />
+
+                <div style={{ height: 400, width: '100%' }}>
+                    <DataGrid rows={this.state.response} onRowClick={this.onRowClick} columns={columns} pageSize={5} />
+                </div>
+
             </div>
         )
     }
