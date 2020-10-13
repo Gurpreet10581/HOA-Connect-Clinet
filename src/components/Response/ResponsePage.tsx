@@ -97,7 +97,8 @@ export default class ResponsePage extends Component <propsData, responseData>{
         const columns = [
             { field: 'id', headerName: 'ID', width: 70 },
             { field: 'description', headerName: 'Description', width: 130 },
-            { field: 'userId', headerName: 'UserID', width: 130 },
+            { field: 'userId', headerName: 'UserID', width: 100 },
+            { field: 'postId', headerName: 'PostID', width: 100 },
             { field: 'createdAt', headerName: 'Created', width: 230 }
           ];
         

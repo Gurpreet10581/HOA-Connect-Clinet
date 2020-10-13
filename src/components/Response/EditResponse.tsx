@@ -63,6 +63,7 @@ class EditResponse extends Component<acceptedProps, responseData> {
               <TextField
                 label="Description"
                 type="text"
+                multiline
                 value={this.state.description}
                 onChange={(e) =>
                   this.setState({ ...this.state, description: e.target.value })

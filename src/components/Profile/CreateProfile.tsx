@@ -65,6 +65,7 @@ class CreateProfile extends Component <AcceptedProps, profileState>{
               <TextField
                 label="Address"
                 type="text"
+                multiline
                 value={this.state.address}
                 onChange={(e) =>
                   this.setState({ ...this.state, address: e.target.value })
@@ -73,6 +74,7 @@ class CreateProfile extends Component <AcceptedProps, profileState>{
               <TextField
                 label="About"
                 type="text"
+                multiline
                 value={this.state.about}
                 onChange={(e) =>
                   this.setState({ ...this.state, about: e.target.value })

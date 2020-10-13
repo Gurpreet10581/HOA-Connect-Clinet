@@ -70,6 +70,7 @@ class CreatePost extends Component <AcceptedProps, postState>{
               <TextField
                 label="Title"
                 type="text"
+                multiline
                 value={this.state.title}
                 onChange={(e) =>
                   this.setState({ ...this.state, title: e.target.value })
@@ -78,6 +79,7 @@ class CreatePost extends Component <AcceptedProps, postState>{
               <TextField
                 label="Description"
                 type="text"
+                multiline
                 value={this.state.description}
                 onChange={(e) =>
                   this.setState({ ...this.state, description: e.target.value })
