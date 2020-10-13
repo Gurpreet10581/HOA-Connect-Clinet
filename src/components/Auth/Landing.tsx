@@ -11,13 +11,13 @@ export default class Landing extends Component {
 
                 <ul style={{listStyle:"none", fontWeight:"bold",fontSize:"large"}}>
                     <li>
-                    -- This Platform helps connect HOA Member and Residents at all time
+                    -- This Platform allows HOA Members and Residents to stay connected at all time
                     </li><br/>
                     <li>
-                    -- Get instant responses from HOA members or HOA residents
+                    -- Gets instant response from HOA members and other residents
                     </li><br/>
                     <li>
-                    -- Keep track of your and other approved requests
+                    -- Keep track of your and other approved requests/projects
                     </li><br/>
                     <li>
                     -- Reduces the wait time

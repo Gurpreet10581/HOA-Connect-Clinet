@@ -4,6 +4,7 @@ import Auth from "./components/Auth/Auth"
 import {UserData} from './components/Helpers/Interfaces';
 import Navbar from './components/NavBar/Navbar';
 import { BrowserRouter as Router } from "react-router-dom";
+import Footer from './components/HomePage/Footer';
 
 
 
@@ -69,7 +70,7 @@ class App extends React.Component<{},sessionData>{
         <Navbar clearToken={this.clearToken} updateToken={this.updateToken} sessionToken={this.state.sessionToken}  admin={this.state.admin}    />
       </Router>
       }
-
+      <Footer />
       </div>
       </div>
 

@@ -116,7 +116,7 @@ export default class ResponsePage extends Component <propsData, responseData>{
                                     <Grid item>
                                         <DeleteResponse onDone={this.onUpdated} data={this.state.selectedRow} sessionToken={this.props.sessionToken} updateToken={this.props.updateToken}/>
                                     </Grid>
-                                    <Button onClick={this.cancelEditing} style={{ textDecoration: 'none', fontSize:"small", color:"black", border:"solid black 2px", borderRadius:"5px",fontWeight:"bold" }}>Cancel Editing</Button>
+                                    <Button onClick={this.cancelEditing} style={{ textDecoration: 'none', fontSize:"small", color:"black", border:"solid black 2px", borderRadius:"5px",fontWeight:"bold",backgroundColor:"white" }}>Cancel Editing</Button>
                                 </>)
                             : 
                             <Grid item>
