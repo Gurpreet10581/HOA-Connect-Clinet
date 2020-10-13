@@ -149,8 +149,8 @@ export default class PostPage extends Component <propsData, postData>{
                                     <Grid item>
                                         <DeletePost onDone={this.onUpdated} data={this.state.selectedRow} updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
                                     </Grid>
-                                    <Button onClick={this.cancelEditing}>Cancel Editing</Button>
-                                    <Link to={'/responsePage/' + this.state.selectedRow.id}>Show Responses</Link>
+                                    <Button onClick={this.cancelEditing} style={{ textDecoration: 'none', fontSize:"small", color:"black", border:"solid black 2px", borderRadius:"5px",fontWeight:"bold" }}>Cancel Editing</Button>
+                                    <Link to={'/responsePage/' + this.state.selectedRow.id} style={{ textDecoration: 'none', fontSize:"large", color:"black", border:"solid black 2px", borderRadius:"5px", padding:"5px"}}>Show Responses</Link>
                                 </>)
                             : 
                             <Grid item>
