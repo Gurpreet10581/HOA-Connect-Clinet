@@ -4,6 +4,7 @@ import PostPage from '../Post/PostPage'
 import ProfilePage from '../Profile/ProfilePage'
 import ResponsePage from '../Response/ResponsePage'
 import { Route, Switch,BrowserRouter as Router } from "react-router-dom";
+import Landing from "../Auth/Landing";
 
 
 
@@ -33,7 +34,7 @@ class Routes extends Component<propsData, routerState> {
                     <Route exact path="/profilePage"><ProfilePage updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} /></Route>
                     <Route exact path="/postPage"><PostPage updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} /></Route>
                     <Route path="/responsePage/:id" component={(props: any) => <ResponsePage  updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} {...props} />}></Route>
-                  
+                    <Route exact path= "/landing"><Landing  /></Route>
 
                 </Switch>
             </div>
