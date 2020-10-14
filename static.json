@@ -2,6 +2,6 @@
     "root": "build/",
     "clean_urls": false,
     "rotues": {
-        "/**:" "index.html"
+        "/**": "index.html"
     }
 }
