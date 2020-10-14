@@ -5,6 +5,7 @@ export default class Landing extends Component {
         return (
             <div >
                 <h1 style={{textDecoration:"underline"}}>About</h1>
+                <h2 style={{textAlign:"center"}}>User Must create/have a profile to fully enjoy this application.</h2>
                 <br/><br/>
                 <div style={{fontFamily:"monospace", color:"ButtonHighlight", textAlign: "center"}}>
                 <p style={{fontSize:"xx-large"}}>Here is what you should know about your HOA Connect</p>

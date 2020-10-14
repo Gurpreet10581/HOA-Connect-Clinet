@@ -84,7 +84,8 @@ export default class ProfilePage extends Component <propsData, profileData>{
 
     onUpdate() {
         this.fetchProfile();
-        // window.location.reload();
+        console.log("Here");
+        // window.location.reload();//this is refreshing the render
     }
     // const columns = [
     //     { field: 'id', headerName: 'ID', width: 70 },
