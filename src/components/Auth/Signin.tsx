@@ -120,7 +120,7 @@ export default class Signin extends Component <acceptedProps, State>{
                         <Grid item className='Signin'>
                         <span style = {{color:"black"}}> SignUp if you don't have an account yet? </span>
                         <Link to="/signup" >
-                        {"Signup"}
+                        {"Click here to sign up "}
                         </Link>
                         </Grid>
                     </Grid>
