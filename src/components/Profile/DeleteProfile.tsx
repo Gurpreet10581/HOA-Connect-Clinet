@@ -2,12 +2,20 @@ import { Button } from "@material-ui/core";
 import React, { Component } from "react";
 import {Profile} from '../Helpers/Interfaces';
 import APIURL from '../Helpers/environment';
+declare var window: any;
 
 
 type acceptedProps ={
     // updateToken: string | null;
+    data: {
+        id: number,
+        address: string,
+        about: string
+      } | any,
     updateToken: (newToken: string) => void,
     sessionToken: string | null,
+    onDone: () => void
+
 }
 
 type profileData={
@@ -24,9 +32,13 @@ class DeleteProfile extends Component<acceptedProps, profileData> {
     
     
     deleteProfile = (): any => {
+        if(!window.confirm('Are you sure you want to delete this item?')){
+            return;
+        }
+
         if(this.props.sessionToken !== null){
 
-            let id:number = 1; 
+            let id:number = this.props.data.id;  
             fetch(`${APIURL}/profile/${id}`, {
                 method: 'DELETE',
                 headers: {
@@ -35,7 +47,7 @@ class DeleteProfile extends Component<acceptedProps, profileData> {
                 },
             })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {console.log(data); if(typeof this.props.onDone === 'function') {this.props.onDone()}})
             .catch(err => console.log(err))
         }
     }

@@ -7,6 +7,7 @@ import EditProfile from './EditProfile';
 // import DeleteProfile from './DeleteProfile';
 import { Grid } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
+import DeleteProfile from './DeleteProfile';
 
 
 
@@ -112,6 +113,9 @@ export default class ProfilePage extends Component <propsData, profileData>{
                                 <EditProfile onDone={this.onUpdate.bind(this)} data={this.state.profile} updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
                             </Grid>
                             }
+                            <Grid item>
+                            <DeleteProfile onDone={this.onUpdate.bind(this)} data={this.state.profile} updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                            </Grid> 
                             {/* <Grid item>
                                 <EditProfile updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
                             </Grid> <br /> <br />

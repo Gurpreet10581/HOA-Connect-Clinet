@@ -7,6 +7,7 @@ type AcceptedProps = {
     // updateToken:string |null;
     updateToken: (newToken: string) => void,
     sessionToken: string | null,
+    // fetchPost: () => void
 }
 
 type postState ={
@@ -58,6 +59,7 @@ class CreatePost extends Component <AcceptedProps, postState>{
             if (json.message === "A new post has been created") {
               console.log("Post has been created");
               this.setState(json.post.title, json.post.description);
+              // this.props.fetchPost();
             }
           })
           .catch((err) => console.log(err));

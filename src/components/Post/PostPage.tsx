@@ -154,7 +154,7 @@ export default class PostPage extends Component <propsData, postData>{
                                 </>)
                             : 
                             <Grid item>
-                                <CreatePost updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                                <CreatePost updateToken={this.props.updateToken} sessionToken={this.props.sessionToken}  />
                             </Grid> }
                         </Grid>
                 </Grid><br /> <br />  <hr />
