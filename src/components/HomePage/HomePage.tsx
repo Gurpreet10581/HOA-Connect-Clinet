@@ -1,11 +1,11 @@
 import { Button } from '@material-ui/core';
 import React, { Component } from 'react';
-import CreatePost from '../Post/CreatePost';
-import PostPage from '../Post/PostPage';
-import CreateProfile from '../Profile/CreateProfile';
-import ProfilePage from '../Profile/ProfilePage';
-import CreateResponse from '../Response/CreateResponse';
-import ResponsePage from '../Response/ResponsePage';
+// import CreatePost from '../Post/CreatePost';
+// import PostPage from '../Post/PostPage';
+// import CreateProfile from '../Profile/CreateProfile';
+// import ProfilePage from '../Profile/ProfilePage';
+// import CreateResponse from '../Response/CreateResponse';
+// import ResponsePage from '../Response/ResponsePage';
 import Navbar from '../NavBar/Navbar';
 
 type HomeData={
