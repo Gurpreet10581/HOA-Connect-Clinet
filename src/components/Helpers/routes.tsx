@@ -34,7 +34,7 @@ class Routes extends Component<propsData, routerState> {
                     <Route exact path="/profilePage"><ProfilePage updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} /></Route>
                     <Route exact path="/postPage"><PostPage updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} /></Route>
                     <Route path="/responsePage/:id" component={(props: any) => <ResponsePage  updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} {...props} />}></Route>
-                    <Route exact path= "/landing"><Landing  /></Route>
+                    <Route exact path= "/landing"><Landing updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} /></Route>
 
                 </Switch>
             </div>

@@ -1,8 +1,23 @@
 import React, { Component } from 'react'
+import Admin from './Admin'
+import {UserData} from '../Helpers/Interfaces'
 
-export default class Landing extends Component {
+type profileData={
+    user?: UserData | null;
+}
+
+type propsData = {
+    updateToken: (newToken: string) => void,
+    sessionToken: string | null,
+}
+
+export default class Landing extends Component <propsData, profileData>{
     render() {
         return (
+            <div>
+                {
+                    localStorage.getItem("admin") === "true" ?
+                    <Admin updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} /> :
             <div >
                 <h1 style={{textDecoration:"underline"}}>About</h1>
                 <h2 style={{textAlign:"center"}}>User Must create/have a profile to fully enjoy this application.</h2>
@@ -25,6 +40,8 @@ export default class Landing extends Component {
                     </li><br/>
                 </ul>
                 </div>
+            </div>
+                }
             </div>
         )
     }

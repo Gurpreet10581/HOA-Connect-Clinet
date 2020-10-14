@@ -51,6 +51,8 @@ export default class Signin extends Component <acceptedProps, State>{
         })
         .then((response) => response.json())
         .then((data) => { console.log(data);
+            localStorage.setItem("admin", data.user.admin);
+            console.log(data.user.admin);
             this.props.updateToken(data.sessionToken);//to pass string not object
             console.log(`You are now Signed In!`);
            

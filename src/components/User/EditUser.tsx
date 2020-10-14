@@ -37,7 +37,7 @@ class EditUser extends Component<acceptedProps, userState> {
             email: '',
             password: '',
             admin: false,
-            userName: 'Enter an User Name'
+            userName: ''
       }
     }
     
@@ -75,102 +75,67 @@ class EditUser extends Component<acceptedProps, userState> {
 
     render(){
         return(
-            <Grid container component="main" className='root'>
-            <CssBaseline />
-            <Grid item xs={false} sm={4} md={7} className='image' />
-            <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-              <div className='paper'>
+          <div>
+                <h1> Edit User</h1>
+            <form onSubmit={user =>{this.editUser(user)}}>
+              <TextField
+                label="First Name"
+                type="text"
+                multiline
+                value={this.state.firstName}
+                onChange={(e) =>
+                  this.setState({ ...this.state, firstName: e.target.value })
+                }
+              />
+              <TextField
+                label="Last Name"
+                type="text"
+                multiline
+                value={this.state.lastName}
+                onChange={(e) =>
+                  this.setState({ ...this.state, lastName: e.target.value })
+                }
+              />
+                <TextField
+                label="Email"
+                type="text"
+                multiline
+                value={this.state.email}
+                onChange={(e) =>
+                  this.setState({ ...this.state, email: e.target.value })
+                }
+              />
+                <TextField
+                label="User Name"
+                type="text"
+                multiline
+                value={this.state.userName}
+                onChange={(e) =>
+                  this.setState({ ...this.state, userName: e.target.value })
+                }
+              />
+                {/* <TextField
+                label="Address"
+                type="text"
+                multiline
+                value={this.state.admin}
+                onChange={(e) =>
+                  this.setState({ ...this.state, admin: e.target.value })
+                }
+              /> */}
+              <br /> <br />
+              <Button
+                size="small"
+                variant="outlined"
+                type="submit"
+                value="Create"
+                data-test="submit"
                 
-                <Typography component="h1" variant="h5">
-                  User Edit
-              </Typography>
-                <form className='form' noValidate onSubmit={this.editUser}>
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="firstName"
-                    label="First Name"
-                    name="firstName"
-                    autoComplete="First Name"
-                    autoFocus
-                    value={this.state.firstName}
-                    onChange={e => {
-                      this.setState({ firstName: e.target.value })
-                    }}
-                  />
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="lastName"
-                    label="Last Name"
-                    name="lastName"
-                    autoComplete="Last Name"
-                    autoFocus
-                    value={this.state.lastName}
-                    onChange={e => this.setState({ lastName: e.target.value })}
-                  />
-                    <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="userName"
-                    label="User Name"
-                    name="userName"
-                    autoComplete="User Name"
-                    autoFocus
-                    value={this.state.userName}
-                    onChange={e => this.setState({ userName: e.target.value })}
-                  />
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
-                    autoFocus
-                    value={this.state.email}
-                    onChange={e => this.setState({ email: e.target.value })}
-                  />
-                  <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="off"
-                    InputProps={{
-                        inputProps: { 
-                            max: 16, min: 5
-                        }
-                    }}
-                    title="Password must be at least 5 characters"
-                    value={this.state.password}
-                    onChange={e => this.setState({ password: e.target.value })}
-                  />
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    className='submit'
-                  >
-                    Edit User
-                </Button>
-                </form>
-              </div>
-            </Grid>
-          </Grid>
+              >
+                Edit User
+              </Button>
+            </form>
+          </div>
         )
     }
 

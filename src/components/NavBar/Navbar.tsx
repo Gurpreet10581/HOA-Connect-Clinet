@@ -125,7 +125,7 @@ export default class Navbar extends Component<NavProps, StateItems> {
                   <PostPage updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
                 </Route> 
                 <Route path="/responsePage/:id" component={(props: any) => <ResponsePage  updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} {...props} />}></Route>
-                <Landing />
+                <Landing updateToken={this.props.updateToken } sessionToken={this.props.sessionToken} />
                   
             </Switch>
           </div>
