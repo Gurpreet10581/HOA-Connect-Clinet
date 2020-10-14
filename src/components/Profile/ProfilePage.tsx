@@ -133,10 +133,12 @@ export default class ProfilePage extends Component <propsData, profileData>{
                      </form>
                     </div>
                     <hr />
-                    <div>
+                    <div style={{textAlign:"center", fontWeight:"bold", fontSize:"x-large", fontFamily:"cursive"}}>
 
                     {this.state.profile == null ? null : <>
-                            {this.state.profile.address} or {this.state.profile.about} 
+                         Address:   {this.state.profile.address} <br/> <br/>
+                         About: {this.state.profile.about} <br/> <br/>
+                         Profile ID: {this.state.profile.id} <br/> <br/>
                 </>}
                     </div>
             </div>

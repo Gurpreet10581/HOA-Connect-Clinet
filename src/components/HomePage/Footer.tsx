@@ -13,13 +13,7 @@ const Footer = () => {
             <div className="spacer"></div>
 
             <footer>
-
-             
-
             <p>&copy; Gurpreet Singh 2020</p>
-
-            
-
             </footer>
 
         </div>

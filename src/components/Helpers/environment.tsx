@@ -5,7 +5,7 @@ switch (window.location.hostname) {
         APIURL = 'http://localhost:4000';
         break;
     case 'gs-hoa-connect-client.herokuapp.com' :
-        APIURL = 'https://gs-hoa-connect-server.herokuapp.com/'
+        APIURL = 'https://gs-hoa-connect-server.herokuapp.com'
 }
 
 export default APIURL;
