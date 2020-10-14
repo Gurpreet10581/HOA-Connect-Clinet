@@ -1,44 +1,49 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# HOA Connect
 
-## Available Scripts
+## App that connects you to your HOA members and residents instantly.
 
-In the project directory, you can run:
+### This app allows user to create an account and profile to make post/request such as modification request on their property and receive instant response from their HOA member or fellow residents.
 
-### `npm start`
+#### Following link showcases client side of this project- https://hoa-create-client.herokuapp.com/
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Below images are demonstration of Different Views
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#### SignUp View
+<img src= "./src/assets/SignUp and SignIn View.PNG" width= 80%>
 
-### `npm test`
+#### SignIn View
+<img src= "./src/assets/SignIn and SignUp View.PNG" width= 80%>
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Home Page View
+<img src= "./src/assets/HomePage View.PNG" width= 80%>
 
-### `npm run build`
+#### Profile Page View
+<img src= "./src/assets/ProfilePage View.PNG" width= 80%>
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Post Page View
+<img src= "./src/assets/PostPage View.PNG" width= 80%>
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+#### Post Edit and Delete Page View
+<img src= "./src/assets/Post Edit and Delete Page View.PNG" width= 80%>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Response Page View
+<img src= "./src/assets/ResponsePage View.PNG" width= 80%>
 
-### `npm run eject`
+#### Response Edit and Delete Page View
+<img src= "./src/assets/Response Edit and Delete Page View.PNG" width= 80%>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Some useful links for this project
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Promise- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Async Function- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### TypeScript and React: Context- https://fettblog.eu/typescript-react/context/
 
-## Learn More
+#### Integrate Routing in Typescript- https://medium.com/react-courses/how-to-integrate-routing-in-typescript-project-with-react-router-v5-2-0-a6b0ab160a1b
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Object.assign()- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### React Router- https://reactrouter.com/web/api/Redirect
+
+#### TypeScript interface vs. type- https://pawelgrzybek.com/typescript-interface-vs-type/#:~:text=Interface%20declarations%20can%20exclusively%20represent,makes%20the%20type%20more%20flexible
