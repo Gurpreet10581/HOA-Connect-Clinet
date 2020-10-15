@@ -4,6 +4,7 @@ export interface UserData{
     sessionToken: string
   }
 export interface UserDetail{
+    id:number,
     firstName:string,
     lastName: string,
     email: string,

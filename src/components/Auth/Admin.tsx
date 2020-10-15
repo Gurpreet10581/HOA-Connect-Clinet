@@ -85,9 +85,7 @@ export default class ProfilePage extends Component <AcceptedProps, userData> {
                 .catch((err) => alert(err));
         }
     }
-    componentDidUpdate(){
-        // console.log("UPDATE");
-    }
+   
     onRowClick = (data : RowParams) => {
         this.setState({selectedRow: data.data});
     }
@@ -95,7 +93,7 @@ export default class ProfilePage extends Component <AcceptedProps, userData> {
     cancelEditing = () => {
         this.setState({selectedRow: null});
     }
-    onUpdate() {
+    onUpdate =() => {
         this.fetchUser();
         this.cancelEditing();
 
@@ -114,20 +112,29 @@ export default class ProfilePage extends Component <AcceptedProps, userData> {
         return (
             <div >
             <div className="main" style={{marginTop:"5em"}}>
-                {/* <Signin admin={props.admin} updateToken={props.updateToken} /> */}
+              
                 <h1>Admin Page</h1>
                 <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
-                    
-                        <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
+
+                    {this.state.selectedRow ? (
+                        <>
+                        <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}> 
+                        
                             <Grid item>
-                                <EditUser  updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                                <EditUser onDone={this.onUpdate} data={this.state.selectedRow}  updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
                             </Grid>
                             <Grid item>
-                            <DeleteUser  updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
+                            <DeleteUser onDone={this.onUpdate} data={this.state.selectedRow}  updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
                             </Grid> 
                          
                         </Grid>
-                    </Grid><br /> <br />  <hr />
+                        <Button onClick={this.cancelEditing} style={{ textDecoration: 'none', fontSize:"small", color:"black", border:"solid black 2px", borderRadius:"5px",fontWeight:"bold",backgroundColor:"white" }}>Cancel Editing</Button>
+                        </>)
+                        :
+                        <div></div>
+                    }
+                        </Grid>
+                    <br /> <br />  <hr />
                     <div style={{textAlign:"center"}}>
                 <form>
                     <Button onClick={this.fetchUser}
@@ -142,9 +149,9 @@ export default class ProfilePage extends Component <AcceptedProps, userData> {
                      </form>
                     </div>
                     <hr />
-                {/* <div style={{ height: 400, width: '100%' }}>
+                <div style={{ height: 400, width: '100%' }}>
                     <DataGrid rows={this.state.user} onRowClick={this.onRowClick} columns={columns} pageSize={5} />
-                </div> */}
+                </div>
                   
             </div>
         </div>

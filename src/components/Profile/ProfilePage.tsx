@@ -4,13 +4,8 @@ import {Profile} from '../Helpers/Interfaces';
 import Button from "@material-ui/core/Button";
 import CreateProfile from './CreateProfile';
 import EditProfile from './EditProfile';
-// import DeleteProfile from './DeleteProfile';
 import { Grid } from '@material-ui/core';
-import { DataGrid } from '@material-ui/data-grid';
 import DeleteProfile from './DeleteProfile';
-
-
-
 
 type profileData={
     profile?: Profile | null;
@@ -88,19 +83,11 @@ export default class ProfilePage extends Component <propsData, profileData>{
         console.log("Here");
         // window.location.reload();//this is refreshing the render
     }
-    // const columns = [
-    //     { field: 'id', headerName: 'ID', width: 70 },
-    //     { field: 'address', headerName: 'Address', width: 230 },
-    //     { field: 'about', headerName: 'About', width: 230 },
-    //     { field: 'userId', headerName: 'UserID', width: 130 },
-    //     { field: 'profileId', headerName: 'ProfileID', width: 100},    
-    //     { field: 'createdAt', headerName: 'Created', width: 230 }
-    //   ];
+  
       
     render( ){
         return(
             <div className="main" style={{marginTop:"5em"}}>
-                
                    
                     <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
                         <Grid container direction="row" justify="space-around" alignItems="center" spacing={3}>
@@ -116,12 +103,6 @@ export default class ProfilePage extends Component <propsData, profileData>{
                             <Grid item>
                             <DeleteProfile onDone={this.onUpdate.bind(this)} data={this.state.profile} updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
                             </Grid> 
-                            {/* <Grid item>
-                                <EditProfile updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
-                            </Grid> <br /> <br />
-                            <Grid item>
-                                <DeleteProfile updateToken={this.props.updateToken} sessionToken={this.props.sessionToken} />
-                            </Grid> */}
                         </Grid>
                     </Grid><br /> <br />  <hr />
                     <div style={{textAlign:"center"}}>

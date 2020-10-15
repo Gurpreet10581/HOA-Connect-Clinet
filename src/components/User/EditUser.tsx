@@ -1,28 +1,30 @@
 import React, {Component} from "react";
 import Button from "@material-ui/core/Button";
 import APIURL from '../Helpers/environment';
-// import {user} from '../Helpers/Interfaces';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-
 
 type acceptedProps ={
     // updateToken: string | null;
+    data: {
+      id: number,
+      firstName: string,
+      lastName: string,
+      email: string,
+      userName: string,
+      admin: boolean
+    } | any,
     updateToken: (newToken: string) => void,
     sessionToken: string | null,
+    onDone: () => void
+
 }
 
 type userState={
-    user: any,
     firstName: string;
     lastName: string;
     email: string;
-    password: string;
-    admin: boolean ;
     userName: string;
+    admin: boolean
 }
 
 class EditUser extends Component<acceptedProps, userState> {
@@ -31,13 +33,11 @@ class EditUser extends Component<acceptedProps, userState> {
         // console.log(props)
         this.state= {
           
-            user: {},
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: '',
-            admin: false,
-            userName: ''
+            firstName: this.props.data.firstName,
+            lastName: this.props.data.lastName,
+            email: this.props.data.email,
+            userName: this.props.data.userName,
+            admin: this.props.data.admin
       }
     }
     
@@ -45,7 +45,7 @@ class EditUser extends Component<acceptedProps, userState> {
       event.preventDefault();
 
             if(this.props.sessionToken !== null ){
-            let id:number =1;//////////////////////// not sure if I need this line
+            let id:number = this.props.data.id;//////////////////////// not sure if I need this line
             fetch(`${APIURL}/user/editUser/${id}`, {
                 method: 'PUT',
                 body: JSON.stringify({
@@ -53,9 +53,9 @@ class EditUser extends Component<acceptedProps, userState> {
                         firstName: this.state.firstName,
                         lastName: this.state.lastName,
                         email: this.state.email,
-                        password: this.state.password,
+                        // password: this.state.password,
                         userName: this.state.userName,
-                        admin:this.state.admin
+                        // admin:this.state.admin
                         }
                 }),
                 headers: {
@@ -66,6 +66,10 @@ class EditUser extends Component<acceptedProps, userState> {
             })
             .then(res => res.json())
             .then((data) => {
+              console.log(this.props.onDone)
+              if(typeof this.props.onDone === 'function') {
+                this.props.onDone();
+              }
                 console.log('Data', data)
             })
             .catch((err) => console.log(err));

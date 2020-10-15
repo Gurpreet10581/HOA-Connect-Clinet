@@ -6,8 +6,17 @@ import APIURL from '../Helpers/environment';
 
 type acceptedProps ={
     // updateToken: string | null;
+    data: {
+        id: number,
+        firstName: string,
+        lastName: string,
+        email: string,
+        userName: string
+      } | any,
     updateToken: (newToken: string) => void,
     sessionToken: string | null,
+    onDone: () => void
+
 }
 
 type userData={
@@ -24,9 +33,12 @@ class DeleteUser extends Component<acceptedProps, userData> {
     
     
     deleteUser = (): any => {
+        if(!window.confirm('Are you sure you want to delete this item?')){
+            return;
+        }
         if(this.props.sessionToken !== null){
 
-            let id:number = 1; 
+            let id:number = this.props.data.id; 
             fetch(`${APIURL}/user/deleteUser/${id}`, {
                 method: 'DELETE',
                 headers: {
@@ -35,7 +47,7 @@ class DeleteUser extends Component<acceptedProps, userData> {
                 },
             })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {console.log(data); if(typeof this.props.onDone === 'function') {this.props.onDone()}})
             .catch(err => console.log(err))
         }
     }

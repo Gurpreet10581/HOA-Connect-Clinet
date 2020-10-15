@@ -72,8 +72,6 @@ class GetPost extends Component <AcceptedProps, postState>{
       render() {
         return (
           <div>
-           
-            
              <Button onClick={this.fetchPost}
                 size="small"
                 variant="outlined"
@@ -85,34 +83,7 @@ class GetPost extends Component <AcceptedProps, postState>{
               </Button>
 
 
-            {/* <form onSubmit={this.fetchPost.bind(this)}>
-              <TextField
-                label="Title"
-                type="text"
-                value={this.state.title}
-                onChange={(e) =>
-                  this.setState({ ...this.state, title: e.target.value })
-                }
-              />
-              <TextField
-                label="Description"
-                type="text"
-                value={this.state.description}
-                onChange={(e) =>
-                  this.setState({ ...this.state, description: e.target.value })
-                }
-              />
-    
-              <Button
-                size="small"
-                variant="outlined"
-                type="submit"
-                value="Create"
-                data-test="submit"
-              >
-                Create
-              </Button>
-            </form> */}
+            
           </div>
         );
       }
